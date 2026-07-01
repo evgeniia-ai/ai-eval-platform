@@ -1,0 +1,11 @@
+﻿__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+data/*.db
+data/*.db.bak*
+check_scores.py
+.DS_Store
+Thumbs.db
