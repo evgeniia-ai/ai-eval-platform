@@ -124,6 +124,12 @@ The suite is split into two tiers:
 
 ---
 
+## Architecture
+
+![Architecture](docs/img/architecture.svg)
+
+---
+
 ## Architecture notes
 
 The codebase is structured as one evaluator library (`src/`) with two thin interfaces over it:
