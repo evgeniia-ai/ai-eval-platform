@@ -60,6 +60,70 @@ def test_load_seed_transcripts():
         assert len(t.transcript) > 0
 
 
+def test_default_sets_reference_existing_transcripts():
+    # A call_id in SMOKE_SET/REGRESSION_SET with no matching transcript on disk
+    # is silently skipped by ingest.run_suite (see "skipped_call_ids") instead of
+    # failing — catch that drift here so it fails loudly in CI.
+    from src.test_sets import REGRESSION_SET, SMOKE_SET
+
+    all_ids = {t.call_id for t in ingest.load_transcripts(include_generated=True)}
+    missing_smoke = SMOKE_SET - all_ids
+    missing_regression = REGRESSION_SET - all_ids
+    assert not missing_smoke, f"SMOKE_SET references missing call_ids: {missing_smoke}"
+    assert not missing_regression, f"REGRESSION_SET references missing call_ids: {missing_regression}"
+
+
+# ---------------------------------------------------------------------------
+# Demo mode
+# ---------------------------------------------------------------------------
+
+def test_export_demo_produces_valid_json_with_six_suite_runs(tmp_db):
+    import json as _json
+
+    from scripts.export_demo import export
+
+    storage.init()
+    t = ingest.load_transcripts(include_generated=False)[0]
+    # Evaluation first so its created_at precedes every suite run below —
+    # each suite run's _matching_evaluation lookup requires created_at <= suite's.
+    storage.save(_fake_evaluate(t), transcript=t, model="claude-sonnet-4-6")
+
+    for i in range(7):  # one more than N_SUITE_RUNS, to verify only the latest 6 are kept
+        storage.save_suite_run(
+            suite_name="Smoke" if i % 2 == 0 else "Regression",
+            selected_call_ids=[t.call_id],
+            failed_call_ids=[],
+            skipped_call_ids=[],
+            ok_scores=[4.0],
+            gt_pairs=[],
+            model="claude-sonnet-4-6",
+        )
+
+    data = export()
+    _json.dumps(data)  # must be JSON-serializable
+    assert len(data["suite_runs"]) == 6
+    assert len(data["evaluations"]) == 1
+    assert data["evaluations"][0]["call_id"] == t.call_id
+
+
+def test_app_imports_cleanly_in_demo_mode():
+    import os
+    import pathlib
+    import subprocess
+    import sys
+
+    env = {**os.environ, "DEMO_MODE": "true"}
+    result = subprocess.run(
+        [sys.executable, "-c", "import src.app"],
+        cwd=str(pathlib.Path(__file__).resolve().parents[1]),
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    assert result.returncode == 0, result.stderr
+
+
 def test_run_pipeline_smoke(tmp_db):
     with patch("src.ingest.evaluate", side_effect=_fake_evaluate):
         ok, fail = ingest.run(include_generated=False)
@@ -117,6 +181,18 @@ def test_evaluate_malformed_dict_raises():
 
     with pytest.raises(QAError):
         evaluate({"garbage": True})
+
+
+def test_build_gt_pairs_excludes_synthetic():
+    from src.data_gen import build_gt_pairs
+
+    results = [
+        ("HB-2026-00147", 4.0, 4.0),        # human — kept
+        ("HB-2026-00203", 3.0, 3.5),        # human — kept
+        ("HB-SYNTH-00118", 5.0, 4.5),       # synthetic GT present — excluded
+    ]
+    pairs = build_gt_pairs(results)
+    assert pairs == [(4.0, 4.0), (3.0, 3.5)]
 
 
 # ---------------------------------------------------------------------------
@@ -329,3 +405,18 @@ def test_no_review_created_for_clean_save(tmp_db):
 
     assert storage.pending_reviews() == []
     assert storage.all_reviews() == []
+
+
+def test_review_dedupes_across_repeated_runs(tmp_db):
+    # Re-evaluating the same call across N judge runs (re-run, model comparison,
+    # suite re-run, ...) must not pile up N pending rows for one call.
+    storage.init()
+    ev1 = _make_evaluation(2.5, "billing_inquiry")  # low_score
+    storage.save(ev1)
+    ev2 = _make_evaluation(2.7, "billing_inquiry")  # low_score again
+    run_id_2 = storage.save(ev2)
+
+    pending = [r for r in storage.pending_reviews() if r["call_id"] == ev1.call_id]
+    assert len(pending) == 1
+    assert pending[0]["run_id"] == run_id_2
+    assert len(storage.all_reviews()) == 1

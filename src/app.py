@@ -23,11 +23,28 @@ import plotly.express as px
 import streamlit as st
 import traceback  # to print the full error stack to the UI instead of swallowing it
 
-from src import coaching, config, data_gen, ingest, storage
+from src import coaching, config, data_gen, demo_data, ingest, storage
+from src.data_gen import is_synthetic_call_id
 from src.qa_engine import QAError, evaluate
 from src.models import Transcript
 from src.rubric import RUBRIC, DIMENSION_KEYS
 from src.test_sets import SMOKE_SET, REGRESSION_SET
+
+
+def _demo_mode_enabled() -> bool:
+    """DEMO_MODE from the environment, falling back to Streamlit secrets. Default false."""
+    env_val = os.environ.get("DEMO_MODE")
+    if env_val is not None:
+        return env_val.strip().lower() in ("1", "true", "yes")
+    try:
+        return bool(st.secrets.get("DEMO_MODE", False))
+    except Exception:
+        return False
+
+
+DEMO_MODE = _demo_mode_enabled()
+# Read-only data-access layer: demo_data (frozen JSON) or storage (live qa.db).
+db = demo_data if DEMO_MODE else storage
 
 _NAME = {d.key: d.name for d in RUBRIC}
 _MODEL_SHORT = {
@@ -56,7 +73,14 @@ _JUDGE_MODELS = [
 ]
 
 st.set_page_config(page_title="HealthBridge Call QA", page_icon="📞", layout="wide")
-storage.init()
+
+if DEMO_MODE:
+    st.info(
+        "🔒 **Demo mode** — frozen results from a real evaluation run (2 suites x 3 "
+        "judge models). Live evaluation available when running locally with your own API key."
+    )
+else:
+    storage.init()
 
 
 def _format_run_label(run: dict) -> str:
@@ -91,7 +115,7 @@ def _score_color(v: float) -> str:
 # ---------------------------------------------------------------------------
 st.sidebar.title("📞 HealthBridge")
 st.sidebar.caption("Call QA & Self-Improvement")
-st.sidebar.metric("Evaluations stored", storage.count())
+st.sidebar.metric("Evaluations stored", db.count())
 page = st.sidebar.radio(
     "Navigate",
     ["Overview", "Call detail", "Rep summary", "Data generation", "Test runs", "Review Queue"],
@@ -111,11 +135,11 @@ if page not in ("Test runs", "Review Queue"):
 # ---------------------------------------------------------------------------
 def page_overview():
     st.header("All evaluated calls")
-    rows = storage.all_evaluations()
+    rows = db.all_evaluations()
 
     if not rows:
         st.info("No evaluations yet. Load and evaluate transcripts to get started.")
-        if st.button("▶ Evaluate seed + generated transcripts", type="primary"):
+        if not DEMO_MODE and st.button("▶ Evaluate seed + generated transcripts", type="primary"):
             bar = st.progress(0.0, text="Starting…")
             def prog(done, total, msg):
                 bar.progress(done / total, text=f"[{done}/{total}] {msg}")
@@ -146,7 +170,7 @@ def page_overview():
     # MAE vs human ground truth — seed calls only (exclude HB-SYNTH, whose GT
     # is model-generated and circular: the same model family labels its own output).
     seed_gt = df[
-        ~df["call_id"].str.startswith("HB-SYNTH") & df["ground_truth_overall"].notna()
+        ~df["call_id"].map(is_synthetic_call_id) & df["ground_truth_overall"].notna()
     ]
     if len(seed_gt):
         mae = round((seed_gt["overall_score"] - seed_gt["ground_truth_overall"]).abs().mean(), 2)
@@ -171,7 +195,7 @@ def page_overview():
     st.subheader("MAE by dimension (vs human ground truth)")
     dim_errors: dict[str, list[float]] = {k: [] for k in DIMENSION_KEYS}
     for row in rows:
-        if row["call_id"].startswith("HB-SYNTH"):
+        if is_synthetic_call_id(row["call_id"]):
             continue  # exclude circular synthetic GT
         if not row.get("transcript_json"):
             continue
@@ -196,7 +220,10 @@ def page_overview():
     else:
         st.caption("No human-labeled calls with ground-truth dimension scores in the database yet.")
 
-with st.expander("Re-run evaluation pipeline"):
+if DEMO_MODE:
+    st.caption("Re-run controls are disabled in demo mode (they call the Anthropic API).")
+else:
+    with st.expander("Re-run evaluation pipeline"):
         if st.button("▶ Re-evaluate all transcripts"):
             bar = st.progress(0.0, text="Starting…")
             def prog(done, total, msg):
@@ -243,14 +270,14 @@ with st.expander("Re-run evaluation pipeline"):
 # ---------------------------------------------------------------------------
 def page_call_detail():
     st.header("Call detail")
-    rows = storage.all_evaluations()
+    rows = db.all_evaluations()
     if not rows:
         st.info("No evaluations yet — see the Overview page.")
         return
 
     call_id = st.selectbox("Select a call", [r["call_id"] for r in rows])
 
-    runs = storage.runs_for_call(call_id)
+    runs = db.runs_for_call(call_id)
 
     def _ts(run: dict) -> str:
         raw = run.get("created_at")
@@ -286,7 +313,7 @@ def page_call_detail():
         format_func=_format_run_label,
         index=0,
     )
-    rec = storage.get_evaluation(call_id, run_id=selected_run["run_id"])
+    rec = db.get_evaluation(call_id, run_id=selected_run["run_id"])
     detail = rec["detail"]
 
     c1, c2, c3 = st.columns(3)
@@ -328,14 +355,14 @@ def page_call_detail():
 # ---------------------------------------------------------------------------
 def page_rep_summary():
     st.header("Representative summary")
-    reps = storage.rep_ids()
+    reps = db.rep_ids()
     if not reps:
         st.info("No evaluations yet — see the Overview page.")
         return
 
     rep_id = st.selectbox("Select a representative", reps)
-    rows = storage.evaluations_for_rep(rep_id)
-    avgs = storage.rep_dimension_averages(rep_id)
+    rows = db.evaluations_for_rep(rep_id)
+    avgs = db.rep_dimension_averages(rep_id)
 
     c1, c2 = st.columns(2)
     c1.metric("Calls evaluated", len(rows))
@@ -356,14 +383,16 @@ def page_rep_summary():
     fig2 = px.line(trend, x="call_id", y="overall", markers=True, range_y=[0, 5])
     st.plotly_chart(fig2, use_container_width=True)
 
-    weak = coaching.recurring_weaknesses(rep_id)
+    weak = coaching.recurring_weaknesses(rep_id, avgs=avgs)
     if weak:
         st.warning("Recurring weaknesses: " + ", ".join(f"{_NAME[k]} ({v})" for k, v in weak))
     else:
         st.success("No dimension averages below 3.5 — solid all around.")
 
     st.subheader("Coaching")
-    if st.button("✨ Generate coaching summary", type="primary"):
+    if DEMO_MODE:
+        st.caption("Coaching generation is disabled in demo mode (it calls the Anthropic API).")
+    elif st.button("✨ Generate coaching summary", type="primary"):
         with st.spinner("Generating personalized coaching…"):
             try:
                 summary = coaching.generate_coaching(rep_id)
@@ -406,6 +435,12 @@ def page_data_gen():
         "(call types × quality levels × edge cases). Generated calls include ground-truth "
         "QA scores, so they double as an eval set for the engine."
     )
+    if DEMO_MODE:
+        st.info(
+            "Data generation is disabled in demo mode (it calls the Anthropic API). "
+            "Run locally with your own API key to generate new synthetic transcripts."
+        )
+        return
     n = st.slider("How many to generate", 3, len(data_gen.SPECS), 6)
     if st.button("▶ Generate transcripts", type="primary"):
         bar = st.progress(0.0, text="Starting…")
@@ -478,46 +513,29 @@ def page_test_runs():
     n = len(selected)
     model_short = _MODEL_SHORT.get(tr_model_id, tr_model_id)
     st.caption(f"{n} call{'s' if n != 1 else ''} selected · model: {model_short} · ~{n} API call{'s' if n != 1 else ''}")
+    if DEMO_MODE:
+        st.caption("Live runs are disabled in demo mode (they call the Anthropic API).")
 
-    if st.button("▶ Run selected", type="primary", disabled=(n == 0)):
+    if st.button("▶ Run selected", type="primary", disabled=(n == 0 or DEMO_MODE)):
         transcript_map = {t.call_id: t for t in all_transcripts}
-        ok_scores: list[float] = []
-        failed_msgs: list[str] = []       # "call_id: error" for UI display
-        failed_ids: list[str] = []        # bare call_ids for storage
-        skipped_ids: list[str] = []       # bare call_ids for storage
-        gt_pairs: list[tuple[float, float]] = []
-
         bar = st.progress(0.0, text="Starting…")
-        try:
-            for i, cid in enumerate(selected):
-                bar.progress(i / n, text=f"[{i}/{n}] {cid}…")
-                t = transcript_map.get(cid)
-                if t is None:
-                    skipped_ids.append(cid)
-                    continue
-                try:
-                    ev = evaluate(t)
-                    storage.save(ev, transcript=t)
-                    ok_scores.append(ev.overall_score)
-                    if t.ground_truth_qa:
-                        gt_pairs.append((ev.overall_score, t.ground_truth_qa.overall_score))
-                except QAError as e:
-                    failed_ids.append(cid)
-                    failed_msgs.append(f"{cid}: {e}")
-                except Exception as e:
-                    failed_ids.append(cid)
-                    failed_msgs.append(f"{cid}: {type(e).__name__}: {e}")
-            bar.progress(1.0, text=f"Done — {len(ok_scores)} evaluated.")
-        finally:
-            storage.save_suite_run(
-                suite_name=set_choice,
-                selected_call_ids=selected,
-                failed_call_ids=failed_ids,
-                skipped_call_ids=skipped_ids,
-                ok_scores=ok_scores,
-                gt_pairs=gt_pairs,
-                model=tr_model_id,
-            )
+
+        def _progress(done: int, total: int, msg: str) -> None:
+            bar.progress(done / total, text=f"[{done}/{total}] {msg}")
+
+        result = ingest.run_suite(
+            call_ids=selected,
+            transcript_map=transcript_map,
+            suite_name=set_choice,
+            model=tr_model_id,
+            progress=_progress,
+        )
+        ok_scores = result["ok_scores"]
+        failed_ids = result["failed_ids"]
+        failed_msgs = result["failed_msgs"]
+        skipped_ids = result["skipped_ids"]
+        gt_pairs = result["gt_pairs"]
+        bar.progress(1.0, text=f"Done — {len(ok_scores)} evaluated.")
 
         st.subheader("Run summary")
         c1, c2, c3 = st.columns(3)
@@ -525,11 +543,10 @@ def page_test_runs():
         c2.metric("Failed", len(failed_ids))
         c3.metric("Skipped", len(skipped_ids))
         if ok_scores:
-            mean_score = round(sum(ok_scores) / len(ok_scores), 2)
-            st.metric("Mean overall score", mean_score)
+            st.metric("Mean overall score", result["mean_overall"])
         if gt_pairs:
-            mae = round(sum(abs(pred - gt) for pred, gt in gt_pairs) / len(gt_pairs), 2)
-            st.metric("MAE vs ground truth", mae, help="Lower is better")
+            st.metric("MAE vs ground truth", result["mae_vs_gt"], help="Lower is better")
+            st.caption("MAE vs human-labeled ground truth only (synthetic calls excluded).")
         if failed_msgs:
             st.error("Failures:\n" + "\n".join(f"- {f}" for f in failed_msgs))
         if skipped_ids:
@@ -541,7 +558,7 @@ def page_test_runs():
     st.divider()
     st.subheader("Suite run history")
 
-    suite_rows = storage.all_suite_runs()
+    suite_rows = db.all_suite_runs()
     if not suite_rows:
         st.caption("No suite runs yet — run a set above to start tracking history.")
     else:
@@ -634,7 +651,7 @@ def page_review_queue():
     from collections import Counter
     st.header("Human Review Queue")
 
-    all_rows = storage.all_reviews()
+    all_rows = db.all_reviews()
     if not all_rows:
         st.info(
             "No reviews yet — evaluations that trip a quality or safety trigger "

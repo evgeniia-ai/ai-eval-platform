@@ -100,6 +100,20 @@ def test_evaluation_persisted_after_post(tmp_db):
     assert row["run_id"] == run_id
 
 
+def test_placeholder_call_id_rejected():
+    # "string" is Swagger UI's auto-filled example for a bare `str` field — a
+    # request that never replaced it should be rejected, not stored as a real call.
+    payload = {**_BASE_PAYLOAD, "call_id": "string"}
+    resp = client.post("/evaluate-call", json=payload)
+    assert resp.status_code == 422
+
+
+def test_too_short_call_id_rejected():
+    payload = {**_BASE_PAYLOAD, "call_id": "abcd"}  # 4 chars, below min_length=5
+    resp = client.post("/evaluate-call", json=payload)
+    assert resp.status_code == 422
+
+
 def test_clinical_triage_creates_pending_review(tmp_db):
     payload = {**_BASE_PAYLOAD, "call_id": "TEST-REVIEW", "call_type": "clinical_triage"}
     with patch("src.api.evaluate", side_effect=_fake_evaluate):

@@ -122,3 +122,39 @@ looser standard. Until the golden set is re-labeled, treat the absolute MAE
 numbers as relative model-comparison signals, not ground-truth-accurate
 error rates. The ranking between models is informative even if the absolute
 values shift after re-labeling.
+
+---
+
+## 8. Synthetic GT Circularity in Suite MAE (found & fixed 2026-07-04)
+
+**What:** `suite_runs.mae_vs_gt` (Test runs page) included synthetic calls (`HB-SYNTH-*`) whose ground truth was itself model-generated, via `DATAGEN_MODEL`. The Overview page already excluded these calls from its MAE metric and chart; the Test runs page's suite-run MAE did not — each page filtered independently instead of sharing one rule, so the two calculations drifted apart and the suite-level figure was optimistic: the same model family was, in part, grading its own synthetic output.
+
+**Evidence:** MAE before ("dirty" — human + synthetic pairs) vs after ("clean" — human pairs only) the fix, all 6 suite × model combinations from the 2026-07-04 runs:
+
+| Suite | Model | Dirty MAE | Clean MAE | Δ |
+|---|---|---|---|---|
+| Smoke | Sonnet 4.6 | 0.50 | 0.66 | +0.16 |
+| Smoke | Opus 4.8 | 0.80 | 0.82 | +0.02 |
+| Smoke | Haiku 4.5 | 0.88 | 1.01 | +0.13 |
+| Regression | Opus 4.8 | 0.63 | 0.71 | +0.08 |
+| Regression | Haiku 4.5 | 0.71 | 0.81 | +0.10 |
+| Regression | Sonnet 4.6 | 0.77 | 1.06 | +0.29 |
+
+**Key observations:**
+
+- **All six deltas are positive.** Including synthetic pairs never made the metric look worse — only better. That's the expected signature of circularity, not noise.
+- **Suite champions are unchanged.** Sonnet stays closest to human labels on Smoke (0.66 vs. 0.82/1.01) and Opus stays closest on Regression (0.71 vs. 0.81/1.06), both before and after the fix — the §7 model-comparison conclusion still holds.
+- **Sonnet's Regression delta (+0.29) is roughly 3x the other two Regression deltas (+0.08, +0.10).** `DATAGEN_MODEL` defaults to `claude-sonnet-4-6`, and no override is set in this environment, so the synthetic ground truth in `generated_transcripts.json` was most likely produced by Sonnet itself (to be confirmed against the actual generation run). Sonnet-as-judge agreeing most closely with Sonnet-as-generator on those calls is exactly the circularity this fix removes, and is the cleanest direct evidence that the leakage was real rather than incidental.
+- **Small-denominator caveat.** Clean MAE is computed over only 4 human-labeled pairs on Smoke and 6 on Regression. With denominators this small, one call's error moving by roughly a point shifts the suite MAE by about 0.15 — treat these numbers as directionally useful, not statistically precise, until the golden set grows.
+
+**Fix:** extracted `is_synthetic_call_id()` and `build_gt_pairs()` into `src/data_gen.py` as the single source of truth for the `HB-SYNTH-*` exclusion rule, now used by both the Overview page and the Test runs page. Added a caption on the Test runs page next to the MAE metric ("MAE vs human-labeled ground truth only — synthetic calls excluded") and a unit test (`test_build_gt_pairs_excludes_synthetic`) asserting a synthetic pair is dropped even when `ground_truth_qa` is present.
+
+---
+
+## 9. Operational Findings
+
+Smaller fixes found and closed out alongside the investigation above:
+
+- **Review-queue dedupe was broken.** `storage.save_review` deduped on `(call_id, run_id)`, but `run_id` is unique per judge run, so the check never matched across repeated evaluations of the same call — a call re-evaluated N times produced N pending review rows. Fixed to dedupe on `(call_id, status='Pending')`, updating the existing row's `run_id` instead of inserting a duplicate.
+- **`REGRESSION_SET` referenced 2 nonexistent transcripts** (`HB-SYNTH-00101`, `HB-SYNTH-00103`) that `ingest.run_suite` was silently skipping on every run. Removed from the set and added a test (`test_default_sets_reference_existing_transcripts`) asserting every id in `SMOKE_SET`/`REGRESSION_SET` resolves to a real transcript, so set/data drift fails CI instead of silently skipping.
+- **The API accepted a placeholder `call_id`.** `POST /evaluate-call` would store a real evaluation row for `call_id="string"` — Swagger UI's auto-filled example for an unfilled field. Added `min_length=5` plus a validator rejecting the literal `"string"`.

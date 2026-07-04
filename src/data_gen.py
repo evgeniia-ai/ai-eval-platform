@@ -19,6 +19,28 @@ from . import config
 from .models import CallType, Score, Utterance
 from .rubric import rubric_for_prompt
 
+SYNTHETIC_ID_PREFIX = "HB-SYNTH"
+
+
+def is_synthetic_call_id(call_id: str) -> bool:
+    """True if `call_id` was minted by this module — synthetic ground truth, not human."""
+    return call_id.startswith(SYNTHETIC_ID_PREFIX)
+
+
+def build_gt_pairs(
+    results: list[tuple[str, float, float | None]]
+) -> list[tuple[float, float]]:
+    """Filter (call_id, predicted, ground_truth) triples down to human-labeled pairs.
+
+    Synthetic ground truth is excluded to avoid circular calibration — the same
+    model family would be grading its own generated output.
+    """
+    return [
+        (predicted, gt)
+        for call_id, predicted, gt in results
+        if gt is not None and not is_synthetic_call_id(call_id)
+    ]
+
 
 class GeneratedGroundTruth(BaseModel):
     greeting_identity_verification: Score
@@ -98,7 +120,7 @@ def generate_one(spec: dict, call_index: int, rep_id: str) -> dict:
     dim_scores = gt.model_dump(exclude={"reviewer_notes"})
     from .rubric import weighted_overall
     return {
-        "call_id": f"HB-SYNTH-{call_index:05d}",
+        "call_id": f"{SYNTHETIC_ID_PREFIX}-{call_index:05d}",
         "call_type": spec["call_type"],
         "duration_seconds": gen.duration_seconds,
         "rep_id": rep_id,

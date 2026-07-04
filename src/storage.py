@@ -310,21 +310,30 @@ def count() -> int:
 # ---------------------------------------------------------------------------
 
 def save_review(call_id: str, run_id: int, reasons: list[str]) -> int:
-    """Insert a Pending review row; return review_id (existing if already present)."""
-    created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]
+    """Insert a Pending review row, or point the existing pending one at the latest run.
+
+    A call already awaiting review must not accumulate one row per judge run —
+    dedupe is keyed on call_id + Pending status (not run_id, which is unique
+    per run and would never match across repeated evaluations of the same call).
+    """
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]
     with _conn() as conn:
         existing = conn.execute(
-            "SELECT review_id FROM human_reviews WHERE call_id=? AND run_id=?",
-            (call_id, run_id),
+            "SELECT review_id FROM human_reviews WHERE call_id=? AND status='Pending'",
+            (call_id,),
         ).fetchone()
         if existing:
+            conn.execute(
+                "UPDATE human_reviews SET run_id=?, reason=?, updated_at=? WHERE review_id=?",
+                (run_id, ",".join(reasons), now, existing["review_id"]),
+            )
             return existing["review_id"]
         cur = conn.execute(
             """
             INSERT INTO human_reviews (call_id, run_id, status, reason, created_at)
             VALUES (?, ?, 'Pending', ?, ?)
             """,
-            (call_id, run_id, ",".join(reasons), created_at),
+            (call_id, run_id, ",".join(reasons), now),
         )
         return cur.lastrowid
 

@@ -22,9 +22,16 @@ from .rubric import RUBRIC, WEIGHTS
 _NAME = {d.key: d.name for d in RUBRIC}
 
 
-def recurring_weaknesses(rep_id: str, threshold: float = 3.5) -> list[tuple[str, float]]:
-    """Dimensions where the rep's average falls below `threshold`, weakest first."""
-    avgs = storage.rep_dimension_averages(rep_id)
+def recurring_weaknesses(
+    rep_id: str, threshold: float = 3.5, avgs: dict[str, float] | None = None
+) -> list[tuple[str, float]]:
+    """Dimensions where the rep's average falls below `threshold`, weakest first.
+
+    Pass `avgs` to score against already-fetched averages (e.g. from DEMO_MODE's
+    read-only data layer) instead of hitting storage directly.
+    """
+    if avgs is None:
+        avgs = storage.rep_dimension_averages(rep_id)
     weak = [(k, v) for k, v in avgs.items() if v < threshold]
     return sorted(weak, key=lambda kv: kv[1])
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 from . import storage
 from .models import CallType, Transcript, Utterance
@@ -21,12 +21,21 @@ def _startup() -> None:
 
 
 class EvaluateRequest(BaseModel):
-    call_id: str
+    call_id: str = Field(min_length=5, description="Unique call identifier, e.g. HB-2026-00147.")
     call_type: CallType
     transcript: list[Utterance]
     rep_id: str = "unknown"
     duration_seconds: int = 0
     patient_satisfaction_score: Optional[float] = None
+
+    @field_validator("call_id")
+    @classmethod
+    def _reject_placeholder_call_id(cls, v: str) -> str:
+        # "string" is Swagger UI's auto-filled example value for a bare `str` field —
+        # a request that never replaced it isn't a real call.
+        if v.strip().lower() == "string":
+            raise ValueError("call_id must not be the literal placeholder 'string'")
+        return v
 
 
 class EvaluateResponse(BaseModel):
