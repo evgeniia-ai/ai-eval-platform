@@ -6,6 +6,13 @@ An automated quality-assurance system for healthcare contact-center calls. An LL
 
 ---
 
+## 🔗 Live Demo
+**[Try it in your browser — no setup, no API key](https://ai-eval-platform-hs8guv2hxng87gufdugzsb.streamlit.app)**
+
+Frozen results from a real evaluation run: 2 suites × 3 judge models (Opus, Sonnet, Haiku), MAE vs human-labeled ground truth only. Live evaluation available when running locally with your own key.
+
+---
+
 ## Overview
 
 The system evaluates patient-facing call transcripts across five weighted quality dimensions using Claude as the judge. Evaluations are stored in a shared SQLite database that backs both a Streamlit admin dashboard and a FastAPI endpoint. Calls that trip quality or safety thresholds are automatically routed to a human review queue; the same routing logic fires whether an evaluation originates from the UI, the ingestion pipeline, or the API.
