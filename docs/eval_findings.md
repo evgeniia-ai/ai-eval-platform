@@ -180,3 +180,27 @@ The Review Queue had accumulated 53 pending entries, and 52 of them traced back 
 **Rationale:** call type was a *proxy* for risk, not risk itself — a clean, well-handled triage or refill call routed every single time purely because of its type, regardless of how well the rep actually handled it. That's noise pretending to be safety. The new triggers route on the score that actually indicates risk for that call type (protocol adherence for both; accuracy for triage, since a missed clinical detail is exactly the failure mode that matters there). The generic any-dimension catch-all moved from `<= 2` to `<= 1` because it's no longer the only safety net — identity and the two type-specific rules now cover the `<= 2` cases that matter, so the catch-all only needs to catch genuinely bad (`1`) scores on dimensions with no dedicated rule.
 
 **Cleanup:** `scripts/resolve_suite_run_reviews.py` bulk-resolves the pre-existing backlog — any still-`Pending` review whose `run_id` traces back to a suite-run evaluation is marked `status='Resolved'`, `note='bulk-resolved: calibration run artifact'`. Reviews a human already triaged are left untouched regardless of origin.
+
+---
+
+## 11. Phase 0 Complete — Expanded Ground Truth
+
+**Dataset:** 7 seed + 32 GPT cross-family calls = **39 human-labeled calls** total — 33 for calibration, 6 held out (`scripts/make_holdout.py`, stratified by call type, never used for model selection or MAE tracking).
+
+**Annotation guidelines v1.0** (`docs/human-annotation-guidelines.md`) formalized the rubric into score anchors, per-call-type Required/Preferred/Optional expectations, and two safety-critical escalation rules (clinical_triage red-flag symptoms; prescription_refill self-adjusted dosing). Evidence is captured in a structured **Observed / Concern / Impact** format rather than free-form notes.
+
+**Annotation drift measured:** re-labeling the 7 seed calls under these guidelines (`scripts/compare_relabels.py`) produced a mean absolute delta of **0.61** on overall score. Protocol Adherence was the most unstable dimension (MAD 1.0); Greeting & Identity Verification was fully stable (MAD 0.0) — identity is binary-ish and easy to score consistently, protocol adherence is where most subjective judgment call variance lives.
+
+**Key point:** label noise of this magnitude was inflating judge MAE — some of the "judge disagrees with ground truth" signal in earlier sections (§3, §7) was actually "ground truth disagrees with itself" once measured against a consistent standard.
+
+**Final baseline on the re-labeled golden set** (33 calibration calls, `--suite full`):
+
+| Model | MAE vs GT |
+|---|---|
+| Opus 4.8 | **0.41** |
+| Haiku 4.5 | 0.51 |
+| Sonnet 4.6 | 0.58 |
+
+MAE improved for all three models relative to their pre-guidelines-label runs — consistent labels moved the metric, not the judge. This confirms the annotation-guidelines work, not a judge or rubric change, is what closed the gap.
+
+**Insight:** Haiku matches Opus within ~0.1 MAE at a fraction of the cost — for production, Haiku is a strong default candidate pending a cost/quality tradeoff decision, not Opus-by-default.

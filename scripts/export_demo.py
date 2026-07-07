@@ -1,12 +1,13 @@
 """Export a frozen demo dataset from qa.db for DEMO_MODE.
 
-Selects the 6 most recent Smoke/Regression suite_runs (expected to be the
-clean, post-fix matrix: 2 suites x 3 judge models) plus the 3 most recent
-Full suite_runs (33 calls x 3 judge models), every evaluation row referenced
-by them (scores, judge reasoning, model, rubric_version, transcript — one row
-per call_id x model), the full human_reviews table (so the Review Queue page
-has something to render in demo mode), and labeled-ground-truth stats
-(n human-labeled calls, holdout size). Writes a single pretty-printed
+Selects the 3 most recent Full suite_runs (33 calls x 3 judge models) and
+every evaluation row referenced by them (scores, judge reasoning, model,
+rubric_version, transcript — one row per call_id x model), the full
+human_reviews table (so the Review Queue page has something to render in
+demo mode), and labeled-ground-truth stats (n human-labeled calls, holdout
+size). Smoke/Regression suite_runs are deliberately NOT exported — they're
+stale pre-guidelines runs and would only be shown, never re-run, in demo
+mode, so there's no reason to ship them. Writes a single pretty-printed
 data/demo_results.json. No API keys or absolute paths are written; only DB
 row contents plus the two small derived stats.
 
@@ -29,7 +30,6 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from src import config, ingest, labeling
 
 OUT_PATH = pathlib.Path(__file__).resolve().parents[1] / "data" / "demo_results.json"
-N_SMOKE_REGRESSION_RUNS = 6
 N_FULL_RUNS = 3
 
 
@@ -71,18 +71,10 @@ def export() -> dict:
     conn = sqlite3.connect(config.DB_PATH)
     conn.row_factory = sqlite3.Row
 
-    smoke_regression_rows = conn.execute(
-        """
-        SELECT * FROM suite_runs WHERE suite_name IN ('Smoke', 'Regression')
-         ORDER BY created_at DESC LIMIT ?
-        """,
-        (N_SMOKE_REGRESSION_RUNS,),
-    ).fetchall()
-    full_rows = conn.execute(
+    suite_rows = conn.execute(
         "SELECT * FROM suite_runs WHERE suite_name='Full' ORDER BY created_at DESC LIMIT ?",
         (N_FULL_RUNS,),
     ).fetchall()
-    suite_rows = list(smoke_regression_rows) + list(full_rows)
 
     demo_suite_runs: list[dict] = []
     demo_evaluations: list[dict] = []

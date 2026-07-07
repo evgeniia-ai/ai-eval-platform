@@ -31,6 +31,10 @@
 - ✅ DONE — **Score history / run tracking over time:** storage migrated from UPSERT-per-call to per-run INSERT; every evaluation is now a new timestamped row with `run_id`, `model`, `rubric_version`, and `created_at`. Call detail page shows a Run history table (all runs for a call) with a run selector that loads the chosen run's scores, reasoning, and transcript.
 - **Suite-run duration & cost tracking:** record per-suite-run wall-clock duration and an estimated cost (from token usage) so history shows e.g. "regression on Opus took 40s, ~$2". Deferred from the suite_runs work to avoid scope creep; add once token-usage logging exists.
 
+## Eval set design
+
+- **Redesign SMOKE_SET as a curated canary set:** one representative call per (call_type x key quality profile) — e.g. one clean call, one identity-failure, one safety-critical escalation case, coverage of all 5 call types. Currently `SMOKE_SET` is an ad-hoc 5-call subset. A curated smoke set makes a fast run catch regressions in any part of the rubric. `REGRESSION_SET` should be the broader coverage set. Revisit after Phase 1.
+
 ## Synthetic Data
 
 - **Append instead of overwrite:** make `generated_transcripts.json` append (with dedupe by `call_id`) instead of overwriting, to accumulate a versioned synthetic test set across generation runs.

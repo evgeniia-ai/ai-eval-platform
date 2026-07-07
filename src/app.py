@@ -574,16 +574,14 @@ def page_test_runs():
                 "MAE vs GT": r["mae_vs_gt"],
             } for r in rows])
 
-        smoke_rows = [r for r in suite_rows if r["suite_name"] == "Smoke"]
-        reg_rows   = [r for r in suite_rows if r["suite_name"] == "Regression"]
-        full_rows  = [r for r in suite_rows if r["suite_name"] == "Full"]
+        # Demo mode only ever exports Full suite runs (see export_demo.py), and
+        # only shows that tab/column — Smoke/Regression stay local-run-only.
+        suite_labels = ["Full"] if DEMO_MODE else ["Smoke", "Regression", "Full"]
+        rows_by_label = {label: [r for r in suite_rows if r["suite_name"] == label] for label in suite_labels}
 
-        tab_smoke, tab_reg, tab_full = st.tabs(["Smoke", "Regression", "Full"])
-        for tab, rows, label in [
-            (tab_smoke, smoke_rows, "Smoke"),
-            (tab_reg,   reg_rows,   "Regression"),
-            (tab_full,  full_rows,  "Full"),
-        ]:
+        tabs = st.tabs(suite_labels)
+        for tab, label in zip(tabs, suite_labels):
+            rows = rows_by_label[label]
             with tab:
                 if not rows:
                     st.caption(f"No {label} runs yet.")
@@ -607,8 +605,8 @@ def page_test_runs():
         chart_rows = [r for r in suite_rows if r["mae_vs_gt"] is not None]
         if chart_rows:
             st.subheader("MAE vs ground truth by judge model")
-            col_s, col_r, col_f = st.columns(3)
-            for col, suite_label in [(col_s, "Smoke"), (col_r, "Regression"), (col_f, "Full")]:
+            chart_cols = st.columns(len(suite_labels))
+            for col, suite_label in zip(chart_cols, suite_labels):
                 sub = [r for r in chart_rows if r["suite_name"] == suite_label]
                 with col:
                     st.markdown(f"**{suite_label}**")

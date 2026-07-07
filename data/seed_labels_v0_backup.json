@@ -1,0 +1,79 @@
+{
+  "HB-2026-00147": {
+    "overall_score": 4.2,
+    "reviewer_notes": "Strong greeting and empathy. Minor gap in confirming next steps — rep did not repeat the appointment date back to the patient before closing.",
+    "dimension_scores": {
+      "greeting_identity_verification": 5,
+      "empathy_tone": 5,
+      "accuracy_completeness": 4,
+      "protocol_adherence": 4,
+      "closing_next_steps": 3
+    }
+  },
+  "HB-2026-00203": {
+    "overall_score": 2.8,
+    "reviewer_notes": "Rep skipped identity verification entirely. Provided correct insurance info but tone was rushed and dismissive when patient asked clarifying questions. Did not summarize next steps.",
+    "dimension_scores": {
+      "greeting_identity_verification": 2,
+      "empathy_tone": 2,
+      "accuracy_completeness": 4,
+      "protocol_adherence": 3,
+      "closing_next_steps": 2
+    }
+  },
+  "HB-2026-00289": {
+    "overall_score": 4.8,
+    "reviewer_notes": "Excellent call handling. Rep de-escalated an upset patient, explained charges clearly, offered a payment plan proactively, and confirmed everything before closing. Model call for training.",
+    "dimension_scores": {
+      "greeting_identity_verification": 5,
+      "empathy_tone": 5,
+      "accuracy_completeness": 5,
+      "protocol_adherence": 5,
+      "closing_next_steps": 4
+    }
+  },
+  "HB-2026-00315": {
+    "overall_score": 3.6,
+    "reviewer_notes": "Identity verification was done correctly. Rep handled the refill request efficiently but missed asking which pharmacy to send the prescription to — had to be corrected by the patient. Closing was adequate.",
+    "dimension_scores": {
+      "greeting_identity_verification": 4,
+      "empathy_tone": 4,
+      "accuracy_completeness": 3,
+      "protocol_adherence": 3,
+      "closing_next_steps": 4
+    }
+  },
+  "HB-2026-00401": {
+    "overall_score": 2.5,
+    "reviewer_notes": "Concerning call. Patient described symptoms suggesting possible cardiac issue (chest tightness, shortness of breath). Rep did not follow triage escalation protocol — should have transferred to clinical nurse line immediately. Instead attempted to schedule a routine appointment. Identity verification was done. Closing was abrupt.",
+    "dimension_scores": {
+      "greeting_identity_verification": 4,
+      "empathy_tone": 2,
+      "accuracy_completeness": 1,
+      "protocol_adherence": 1,
+      "closing_next_steps": 3
+    }
+  },
+  "HB-2026-00512": {
+    "overall_score": 3.9,
+    "reviewer_notes": "Complex collections dispute handled with patience. Rep correctly identified insurance coding error and initiated re-processing. Some confusion when navigating between multiple claims. Good de-escalation. Thorough closing.",
+    "dimension_scores": {
+      "greeting_identity_verification": 5,
+      "empathy_tone": 4,
+      "accuracy_completeness": 3,
+      "protocol_adherence": 4,
+      "closing_next_steps": 4
+    }
+  },
+  "HB-2026-00587": {
+    "overall_score": 3.8,
+    "reviewer_notes": "Efficient refill processing. Good identity verification. Patient seemed somewhat down but rep handled the call professionally and completed the request accurately. Solid call overall.",
+    "dimension_scores": {
+      "greeting_identity_verification": 4,
+      "empathy_tone": 4,
+      "accuracy_completeness": 4,
+      "protocol_adherence": 4,
+      "closing_next_steps": 3
+    }
+  }
+}

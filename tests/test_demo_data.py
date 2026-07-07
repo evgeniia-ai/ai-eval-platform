@@ -6,7 +6,7 @@ plus the Review Queue page's read-only rendering in demo mode.
 import json
 import pathlib
 
-from src import demo_data
+from src import demo_data, storage
 
 
 def _write_demo_json(path, **overrides):
@@ -138,3 +138,62 @@ def test_demo_banner_shows_labeled_count(monkeypatch, tmp_demo_path):
 
     assert not at.exception
     assert any("39 human-labeled calls" in i.value for i in at.info)
+
+
+_SUITE_RUN = {
+    "suite_run_id": 1,
+    "suite_name": "Full",
+    "model": "claude-opus-4-8",
+    "rubric_version": "1.1",
+    "created_at": "2026-01-01T00:00:00.000",
+    "n_calls": 1,
+    "n_ok": 1,
+    "n_failed": 0,
+    "n_skipped": 0,
+    "selected_call_ids": "[]",
+    "failed_call_ids": "[]",
+    "skipped_call_ids": "[]",
+    "mean_overall": 4.0,
+    "mae_vs_gt": 0.5,
+}
+
+
+def test_suite_history_shows_only_full_tab_in_demo_mode(monkeypatch, tmp_demo_path):
+    # Even if a stray Smoke/Regression row somehow ended up in the export (an
+    # older snapshot, say), the UI must still show only Full in demo mode.
+    smoke_run = {**_SUITE_RUN, "suite_run_id": 2, "suite_name": "Smoke"}
+    _write_demo_json(demo_data.DEMO_PATH, suite_runs=[smoke_run, dict(_SUITE_RUN)])
+    monkeypatch.setenv("DEMO_MODE", "true")
+
+    from streamlit.testing.v1 import AppTest
+
+    at = AppTest.from_file(str(pathlib.Path(__file__).resolve().parents[1] / "src" / "app.py"))
+    at.run(timeout=30)
+    at.radio(key=at.radio[0].key).set_value("Test runs").run(timeout=30)
+
+    assert not at.exception
+    assert [t.label for t in at.tabs] == ["Full"]
+
+
+def test_suite_history_shows_all_tabs_in_normal_mode(monkeypatch, tmp_db):
+    from streamlit.testing.v1 import AppTest
+
+    storage.init()
+    for suite_name in ("Smoke", "Regression", "Full"):
+        storage.save_suite_run(
+            suite_name=suite_name,
+            selected_call_ids=["HB-TEST-0001"],
+            failed_call_ids=[],
+            skipped_call_ids=[],
+            ok_scores=[4.0],
+            gt_pairs=[],
+            model="claude-opus-4-8",
+        )
+
+    monkeypatch.setenv("DEMO_MODE", "false")
+    at = AppTest.from_file(str(pathlib.Path(__file__).resolve().parents[1] / "src" / "app.py"))
+    at.run(timeout=30)
+    at.radio(key=at.radio[0].key).set_value("Test runs").run(timeout=30)
+
+    assert not at.exception
+    assert [t.label for t in at.tabs] == ["Smoke", "Regression", "Full"]

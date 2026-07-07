@@ -97,7 +97,7 @@ def test_export_demo_produces_suite_runs_reviews_and_stats(tmp_db):
     # each suite run's _matching_evaluation lookup requires created_at <= suite's.
     storage.save(_fake_evaluate(t), transcript=t, model="claude-sonnet-4-6")
 
-    for i in range(7):  # one more than N_SMOKE_REGRESSION_RUNS, to verify only the latest 6 are kept
+    for i in range(7):  # Smoke/Regression must never be exported at all, however many exist
         storage.save_suite_run(
             suite_name="Smoke" if i % 2 == 0 else "Regression",
             selected_call_ids=[t.call_id],
@@ -115,7 +115,7 @@ def test_export_demo_produces_suite_runs_reviews_and_stats(tmp_db):
             skipped_call_ids=[],
             ok_scores=[4.0],
             gt_pairs=[],
-            model="claude-opus-4-8",
+            model="claude-sonnet-4-6",  # matches the evaluation saved above, for _matching_evaluation
         )
 
     # A low overall score trips needs_review -> a human_reviews row to export.
@@ -126,9 +126,8 @@ def test_export_demo_produces_suite_runs_reviews_and_stats(tmp_db):
     data = export()
     _json.dumps(data)  # must be JSON-serializable
 
-    assert Counter(r["suite_name"] for r in data["suite_runs"]) == {
-        "Smoke": 3, "Regression": 3, "Full": 3,
-    }
+    # Smoke/Regression are stale pre-guidelines runs — never exported, only Full is.
+    assert Counter(r["suite_name"] for r in data["suite_runs"]) == {"Full": 3}
     assert data["evaluations"]
     assert all(e["call_id"] == t.call_id for e in data["evaluations"])
 
