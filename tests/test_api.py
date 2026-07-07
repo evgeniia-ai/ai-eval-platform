@@ -37,6 +37,32 @@ def _fake_evaluate(transcript) -> Evaluation:
     )
 
 
+_DIM2 = DimensionEvaluation(score=2, evidence="n/a", reasoning="n/a", suggestion="n/a")
+_DETAIL_RISKY_TRIAGE = TranscriptEvaluation(
+    greeting_identity_verification=_DIM3,
+    empathy_tone=_DIM3,
+    accuracy_completeness=_DIM3,
+    protocol_adherence=_DIM2,  # <= 2 is what routes a clinical_triage call now
+    closing_next_steps=_DIM3,
+    summary="Test call with a protocol miss.",
+    top_strengths=[],
+    top_improvements=[],
+)
+
+
+def _fake_evaluate_risky_triage(transcript) -> Evaluation:
+    """A clinical_triage call with an actual protocol-adherence miss — the
+    routing overhaul means call type alone no longer routes; this fake
+    represents the case that genuinely should."""
+    return Evaluation(
+        call_id=transcript.call_id,
+        rep_id=transcript.rep_id,
+        call_type=transcript.call_type,
+        overall_score=3.5,  # stays >= 2.5 so only the type-specific trigger fires
+        detail=_DETAIL_RISKY_TRIAGE,
+    )
+
+
 _BASE_PAYLOAD = {
     "call_id": "TEST-001",
     "call_type": "billing_inquiry",
@@ -69,9 +95,21 @@ def test_clean_billing_call_returns_pass(tmp_db):
     assert isinstance(data["run_id"], int)
 
 
-def test_clinical_triage_returns_fail(tmp_db):
+def test_clean_clinical_triage_call_does_not_route(tmp_db):
+    # Call type alone no longer routes — a well-handled triage call passes.
     payload = {**_BASE_PAYLOAD, "call_id": "TEST-002", "call_type": "clinical_triage"}
     with patch("src.api.evaluate", side_effect=_fake_evaluate):
+        resp = client.post("/evaluate-call", json=payload)
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "PASS"
+    assert data["review_required"] is False
+    assert data["reasons"] == []
+
+
+def test_risky_clinical_triage_returns_fail(tmp_db):
+    payload = {**_BASE_PAYLOAD, "call_id": "TEST-002B", "call_type": "clinical_triage"}
+    with patch("src.api.evaluate", side_effect=_fake_evaluate_risky_triage):
         resp = client.post("/evaluate-call", json=payload)
     assert resp.status_code == 200
     data = resp.json()
@@ -114,9 +152,11 @@ def test_too_short_call_id_rejected():
     assert resp.status_code == 422
 
 
-def test_clinical_triage_creates_pending_review(tmp_db):
+def test_risky_clinical_triage_creates_pending_review(tmp_db):
+    # API single-call evaluation keeps review routing enabled (route_to_review
+    # defaults True) — a genuinely risky clinical_triage call still queues.
     payload = {**_BASE_PAYLOAD, "call_id": "TEST-REVIEW", "call_type": "clinical_triage"}
-    with patch("src.api.evaluate", side_effect=_fake_evaluate):
+    with patch("src.api.evaluate", side_effect=_fake_evaluate_risky_triage):
         resp = client.post("/evaluate-call", json=payload)
     assert resp.status_code == 200
 

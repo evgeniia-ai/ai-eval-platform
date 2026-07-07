@@ -1,4 +1,4 @@
-"""CLI batch runner for the Smoke / Regression eval suites.
+"""CLI batch runner for the Smoke / Regression / Full eval suites.
 
 Drives the exact same pipeline as the Test runs dashboard page
 (evaluate -> storage.save -> build_gt_pairs -> storage.save_suite_run, via
@@ -7,7 +7,8 @@ DB from one launched through Streamlit.
 
 Usage:
     python scripts/run_suites.py --suite smoke --model claude-sonnet-4-6
-    python scripts/run_suites.py --all              # both suites x 3 models, 6 runs
+    python scripts/run_suites.py --suite full --model claude-opus-4-8
+    python scripts/run_suites.py --all              # smoke+regression x 3 models, 6 runs
 """
 
 from __future__ import annotations
@@ -20,12 +21,14 @@ import sys
 # Make sure the repo root is on sys.path when run as a script.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
-from src import ingest, storage
-from src.test_sets import REGRESSION_SET, SMOKE_SET
+from src import ingest, labeling, storage
+from src.models import Transcript
+from src.test_sets import FULL_SET, REGRESSION_SET, SMOKE_SET
 
 SUITES: dict[str, tuple[str, list[str]]] = {
     "smoke": ("Smoke", SMOKE_SET),
     "regression": ("Regression", REGRESSION_SET),
+    "full": ("Full", FULL_SET),
 }
 
 # The three judge models offered on the dashboard (src/app.py's _JUDGE_MODELS).
@@ -35,6 +38,20 @@ ALL_MODELS = [
     "claude-sonnet-4-6",
     "claude-opus-4-8",
 ]
+
+
+def _load_transcript_map() -> dict[str, Transcript]:
+    """seed + generated + labeled GPT transcripts, keyed by call_id.
+
+    FULL_SET (and future sets) can reference GPT-generated calls, which
+    ingest.load_transcripts() doesn't know about — it only reads
+    seed/generated_transcripts.json, not data/gpt_transcripts.json.
+    """
+    transcripts = {t.call_id: t for t in ingest.load_transcripts(include_generated=True)}
+    for raw in labeling.load_calls():
+        if labeling.is_labeled(raw):
+            transcripts[raw["call_id"]] = Transcript.model_validate(raw)
+    return transcripts
 
 
 def _run_one(suite_key: str, model_id: str, transcript_map: dict) -> dict:
@@ -85,10 +102,12 @@ def main() -> None:
         parser.error("either --all, or both --suite and --model, are required")
 
     storage.init()
-    transcript_map = {t.call_id: t for t in ingest.load_transcripts(include_generated=True)}
+    transcript_map = _load_transcript_map()
 
     if args.all:
-        jobs = [(suite_key, model_id) for suite_key in SUITES for model_id in ALL_MODELS]
+        # --all deliberately excludes "full" (much larger, and not part of the
+        # documented 6-run smoke+regression x 3-model sweep).
+        jobs = [(suite_key, model_id) for suite_key in ("smoke", "regression") for model_id in ALL_MODELS]
     else:
         jobs = [(args.suite, args.model)]
 

@@ -104,6 +104,7 @@ def save(
     transcript: Optional[Transcript] = None,
     model: Optional[str] = None,
     rubric_version: str = RUBRIC_VERSION,
+    route_to_review: bool = True,
 ) -> int:
     """Insert an evaluation row. Returns the new run_id."""
     scores = evaluation.dimension_scores()
@@ -147,15 +148,16 @@ def save(
             ),
         )
         run_id = cur.lastrowid
-    # Routing to human review happens here (not in callers) so both ingest.run()
-    # and the Test runs page get it automatically — single point, no duplication.
-    # Side effect is intentional: in this project we always want review-routing
-    # when an evaluation is saved.
-
-    from .review import needs_review
-    reasons = needs_review(evaluation)
-    if reasons:
-        save_review(evaluation.call_id, run_id, reasons)
+    # Routing to human review happens here (not in callers) so every caller
+    # gets it automatically — single point, no duplication. `route_to_review`
+    # is the one opt-out: ingest.run_suite() (calibration/suite runs, not
+    # production traffic) passes False so experiments on the judge don't flood
+    # the queue. Single-call evaluation (UI, FastAPI) keeps the default True.
+    if route_to_review:
+        from .review import needs_review
+        reasons = needs_review(evaluation)
+        if reasons:
+            save_review(evaluation.call_id, run_id, reasons)
 
     return run_id
 

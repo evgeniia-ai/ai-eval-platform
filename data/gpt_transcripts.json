@@ -1,0 +1,4572 @@
+[
+  {
+    "call_id": "HB-GPT-0001",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 354,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 4.8,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Identity verification was completed before discussing appointment details. The representative communicated professionally, confirmed insurance, and summarized the appointment accurately. No significant quality concerns were identified. Depending on organizational policy, additional verification (such as address or another identifier) could be required for higher-security workflows, although there is no indication from this transcript that further verification was necessary.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge, this is Maya. How can I help you today?"
+      },
+      {
+        "timestamp": "00:00:07",
+        "speaker": "patient",
+        "text": "Hi, I need to schedule a follow-up with Dr. Patel. He said something about six weeks."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "Absolutely, I can help with that. Before I open your chart, can I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:23",
+        "speaker": "patient",
+        "text": "Sure. Angela Marie Brooks, March 12, 1974."
+      },
+      {
+        "timestamp": "00:00:31",
+        "speaker": "rep",
+        "text": "Thank you, Angela. And can you confirm the phone number we have on file?"
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "patient",
+        "text": "It should be 801-555-2198."
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "rep",
+        "text": "Perfect. Give me just a moment while I pull up the scheduling notes."
+      },
+      {
+        "timestamp": "00:00:54",
+        "speaker": "patient",
+        "text": "No problem."
+      },
+      {
+        "timestamp": "00:01:05",
+        "speaker": "rep",
+        "text": "Okay, I see Dr. Patel wanted a six-week follow-up for blood pressure and medication review. Are mornings or afternoons better for you?"
+      },
+      {
+        "timestamp": "00:01:16",
+        "speaker": "patient",
+        "text": "Mornings are better, but not too early if possible."
+      },
+      {
+        "timestamp": "00:01:24",
+        "speaker": "rep",
+        "text": "I have Tuesday, July 14 at 9:20 a.m., or Thursday, July 16 at 10:10 a.m."
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "patient",
+        "text": "Let’s do Tuesday at 9:20."
+      },
+      {
+        "timestamp": "00:01:41",
+        "speaker": "rep",
+        "text": "Great. Before I finalize it, is your insurance still MountainCare PPO?"
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "patient",
+        "text": "Yes, same insurance."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "rep",
+        "text": "Thank you. I have that confirmed. Do you need any accommodations for the visit, like interpreter services or mobility assistance?"
+      },
+      {
+        "timestamp": "00:02:05",
+        "speaker": "patient",
+        "text": "No, I’m good."
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "rep",
+        "text": "Okay. You are scheduled with Dr. Patel on Tuesday, July 14 at 9:20 a.m. at the HealthBridge South clinic."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "patient",
+        "text": "South clinic, yes, that’s the one I usually go to."
+      },
+      {
+        "timestamp": "00:02:29",
+        "speaker": "rep",
+        "text": "Perfect. Please arrive about ten minutes early, and bring an updated medication list if anything has changed."
+      },
+      {
+        "timestamp": "00:02:39",
+        "speaker": "patient",
+        "text": "Okay, I can do that."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:50",
+        "speaker": "patient",
+        "text": "No, that was easy. Thank you."
+      },
+      {
+        "timestamp": "00:02:55",
+        "speaker": "rep",
+        "text": "You’re very welcome. Thanks for calling HealthBridge, and we’ll see you on July 14."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0002",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 468,
+    "rep_id": "REP-0015",
+    "patient_satisfaction_score": 4.7,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Verified full name and DOB before registration. Collected phone number, insurance carrier, and member ID. Confirmed provider, appointment date, time, and location. Explained required documents for check-in.  Patient address was not mentioned in the transcript. This may be completed through electronic intake forms or another registration workflow and cannot be confirmed from the available conversation.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:03",
+        "speaker": "rep",
+        "text": "HealthBridge, this is Daniel speaking. How may I help you?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi, I’m trying to become a new patient. I moved here recently, and I need a primary care appointment."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "Welcome. I can help get that started. Since you’re new to us, I’ll create a profile first. May I have your full legal name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Nora Elise Whitaker, September 5, 1989."
+      },
+      {
+        "timestamp": "00:00:38",
+        "speaker": "rep",
+        "text": "Thank you. And what’s the best phone number for you?"
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "385-555-0184."
+      },
+      {
+        "timestamp": "00:00:49",
+        "speaker": "rep",
+        "text": "Got it. Do you have insurance you’d like us to bill for the visit?"
+      },
+      {
+        "timestamp": "00:00:56",
+        "speaker": "patient",
+        "text": "Yes, but I’m not totally sure if you accept it. It’s Blue Harbor Select."
+      },
+      {
+        "timestamp": "00:01:05",
+        "speaker": "rep",
+        "text": "No problem. I can check the plan name and add it to your profile. Do you have the member ID available?"
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "patient",
+        "text": "Yeah, one second. It’s BHS-7729103."
+      },
+      {
+        "timestamp": "00:01:24",
+        "speaker": "rep",
+        "text": "Thank you. Let me enter that. This may take just a moment."
+      },
+      {
+        "timestamp": "00:01:33",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:47",
+        "speaker": "rep",
+        "text": "Okay, I’m seeing Blue Harbor Select as in-network for primary care with HealthBridge. The exact copay can depend on your plan, but we’ll verify the card at check-in too."
+      },
+      {
+        "timestamp": "00:02:01",
+        "speaker": "patient",
+        "text": "Great. I was worried I’d have to call around again."
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "I understand. For new patient visits, I have Thursday, July 16 at 10:00 a.m. with Dr. Morgan, or Monday, July 20 at 3:30 p.m. with Dr. Chen."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "patient",
+        "text": "Is Dr. Morgan okay for general stuff? Like yearly physical and thyroid labs?"
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "rep",
+        "text": "Yes, Dr. Morgan is primary care and can address those concerns. The first visit may be a new patient establish-care visit, and then they’ll advise on labs."
+      },
+      {
+        "timestamp": "00:02:43",
+        "speaker": "patient",
+        "text": "Okay, then Thursday at 10 is fine."
+      },
+      {
+        "timestamp": "00:02:50",
+        "speaker": "rep",
+        "text": "Great. I scheduled you for Thursday, July 16 at 10:00 a.m. with Dr. Morgan at HealthBridge Central."
+      },
+      {
+        "timestamp": "00:03:01",
+        "speaker": "patient",
+        "text": "Central, okay. Is there paperwork?"
+      },
+      {
+        "timestamp": "00:03:07",
+        "speaker": "rep",
+        "text": "Yes. You’ll get a portal link to complete new patient forms. Please also bring a photo ID, insurance card, and a current medication list."
+      },
+      {
+        "timestamp": "00:03:20",
+        "speaker": "patient",
+        "text": "Perfect."
+      },
+      {
+        "timestamp": "00:03:24",
+        "speaker": "rep",
+        "text": "Just to confirm, your appointment is Thursday, July 16 at 10:00 a.m. with Dr. Morgan at HealthBridge Central."
+      },
+      {
+        "timestamp": "00:03:35",
+        "speaker": "patient",
+        "text": "Yes, that works. Thank you for being so clear."
+      },
+      {
+        "timestamp": "00:03:41",
+        "speaker": "rep",
+        "text": "You’re welcome, Nora. Thanks for calling HealthBridge, and we’ll see you then."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0003",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 327,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 3.7,
+    "ground_truth_qa": {
+      "overall_score": 3.7,
+      "reviewer_notes": "The representative did not clearly confirm the final appointment date and time before closing the call. The patient agreed to an early Friday morning appointment, but the specific time was never restated.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 3
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge, this is Erin. How can I help?"
+      },
+      {
+        "timestamp": "00:00:07",
+        "speaker": "patient",
+        "text": "Hi, I need to book my annual physical. I’m overdue, I think."
+      },
+      {
+        "timestamp": "00:00:14",
+        "speaker": "rep",
+        "text": "Sure, I can help schedule that. Can I verify your full name and date of birth first?"
+      },
+      {
+        "timestamp": "00:00:21",
+        "speaker": "patient",
+        "text": "Marcus Devon Hill, January 18, 1981."
+      },
+      {
+        "timestamp": "00:00:30",
+        "speaker": "rep",
+        "text": "Thank you. Let me pull up your chart."
+      },
+      {
+        "timestamp": "00:00:40",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:00:52",
+        "speaker": "rep",
+        "text": "I have you here. Are you still using Lakeside Health insurance?"
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Yes, same plan."
+      },
+      {
+        "timestamp": "00:01:04",
+        "speaker": "rep",
+        "text": "Great. Are you looking for your usual provider, Dr. Santos?"
+      },
+      {
+        "timestamp": "00:01:10",
+        "speaker": "patient",
+        "text": "Yeah, if she has anything. I need morning before work."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "rep",
+        "text": "Let me check. She has next Friday morning, and there’s also a Monday afternoon, but you said morning is better."
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "patient",
+        "text": "Friday morning should be okay. What time?"
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "rep",
+        "text": "There is an early slot available."
+      },
+      {
+        "timestamp": "00:01:40",
+        "speaker": "patient",
+        "text": "Okay, early is fine. I just can’t be there all day."
+      },
+      {
+        "timestamp": "00:01:48",
+        "speaker": "rep",
+        "text": "No problem. I’ll put you in that slot."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "patient",
+        "text": "Do I need to fast for labs?"
+      },
+      {
+        "timestamp": "00:02:00",
+        "speaker": "rep",
+        "text": "For the physical, Dr. Santos can advise on labs during the visit. If fasting is needed, the care team will let you know."
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:02:15",
+        "speaker": "rep",
+        "text": "Please bring your insurance card, photo ID, and an updated medication list."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "patient",
+        "text": "Okay. So I’m scheduled then?"
+      },
+      {
+        "timestamp": "00:02:29",
+        "speaker": "rep",
+        "text": "Yes, you’re all set."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "patient",
+        "text": "Alright, thanks."
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0004",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 376,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 4.0,
+    "ground_truth_qa": {
+      "overall_score": 4.8,
+      "reviewer_notes": "Observed: Verified identity before accessing the patient's record. Gathered symptom details before scheduling the visit. Confirmed the appointment date, time, provider, and location. Reviewed check-in requirements and required documents.\nConcern: The representative appropriately clarified the patient's symptoms, but did not explain the purpose of collecting this information.\nImpact: Explaining the purpose of symptom questions could improve patient understanding and confidence in the scheduling process.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:03",
+        "speaker": "rep",
+        "text": "HealthBridge, this is Maya. How can I assist you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi, I need an appointment for knee pain. It’s been bothering me for a while."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I can help with that. Can I verify your full name and date of birth before I open your chart?"
+      },
+      {
+        "timestamp": "00:00:24",
+        "speaker": "patient",
+        "text": "Denise Elaine Carter, April 3, 1968."
+      },
+      {
+        "timestamp": "00:00:33",
+        "speaker": "rep",
+        "text": "Thank you, Denise. Give me just a second to pull up your record."
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:00:55",
+        "speaker": "rep",
+        "text": "Okay, I have your chart. Is this knee pain from a new injury, or more of an ongoing issue?"
+      },
+      {
+        "timestamp": "00:01:04",
+        "speaker": "patient",
+        "text": "Ongoing. It’s been maybe two months. I didn’t fall or anything."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Any severe swelling, fever, or are you unable to bear weight on it?"
+      },
+      {
+        "timestamp": "00:01:21",
+        "speaker": "patient",
+        "text": "No fever. It hurts on stairs, but I can walk."
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "rep",
+        "text": "Okay. Dr. Lee has openings Wednesday at 11:15 a.m. or Friday at 8:40 a.m."
+      },
+      {
+        "timestamp": "00:01:39",
+        "speaker": "patient",
+        "text": "Friday at 8:40 would be better."
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "rep",
+        "text": "I’ll schedule Friday at 8:40 with Dr. Lee."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "patient",
+        "text": "Do I need to bring anything specific?"
+      },
+      {
+        "timestamp": "00:01:58",
+        "speaker": "rep",
+        "text": "Bring your ID, medication list, and any prior imaging if you have it."
+      },
+      {
+        "timestamp": "00:02:07",
+        "speaker": "patient",
+        "text": "I don’t have imaging."
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "rep",
+        "text": "That’s okay. The provider will evaluate and decide if anything is needed."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:02:22",
+        "speaker": "rep",
+        "text": "You’re scheduled with Dr. Lee on Friday, July 17 at 8:40 a.m. at HealthBridge South."
+      },
+      {
+        "timestamp": "00:02:32",
+        "speaker": "patient",
+        "text": "Great."
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "rep",
+        "text": "Please arrive ten minutes early."
+      },
+      {
+        "timestamp": "00:02:41",
+        "speaker": "patient",
+        "text": "Okay, thank you."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "rep",
+        "text": "You’re welcome. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0005",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 398,
+    "rep_id": "REP-0036",
+    "patient_satisfaction_score": 4.1,
+    "ground_truth_qa": {
+      "overall_score": 3.6,
+      "reviewer_notes": "Observed: Introduced themselves, collected the patient's name, verified insurance, explained that lab results could not be discussed over the phone, scheduled the follow-up appointment, and confirmed the appointment details.\nConcern: The representative verified only the patient's name before accessing the medical record. Date of birth was not verified prior to account access, which does not meet the identity verification requirement.\nImpact: Incomplete identity verification may increase the risk of accessing the wrong patient record and does not comply with the required verification workflow.",
+      "dimension_scores": {
+        "greeting_identity_verification": 2,
+        "empathy_tone": 5,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge, this is Luis. What can I do for you?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hello, I got a message to make appointment for lab results."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "I can help schedule that. Can I get your full name, please?"
+      },
+      {
+        "timestamp": "00:00:21",
+        "speaker": "patient",
+        "text": "Priya Nandakumar."
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "rep",
+        "text": "Thank you. Give me one moment while I find your chart."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "patient",
+        "text": "Yes."
+      },
+      {
+        "timestamp": "00:00:49",
+        "speaker": "rep",
+        "text": "Okay, I found your record. It looks like Dr. Kim wanted to see you this month to review labs."
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Yes, that is what the portal says. Is something wrong?"
+      },
+      {
+        "timestamp": "00:01:06",
+        "speaker": "rep",
+        "text": "I can’t interpret the lab results over the phone, but I can help you get scheduled so Dr. Kim can review them with you."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "patient",
+        "text": "Okay, yes, please."
+      },
+      {
+        "timestamp": "00:01:23",
+        "speaker": "rep",
+        "text": "Are you still using Summit Choice insurance?"
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "patient",
+        "text": "Yes, same."
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "rep",
+        "text": "Dr. Kim has Monday at 1:10 p.m. or Wednesday at 4:00 p.m."
+      },
+      {
+        "timestamp": "00:01:43",
+        "speaker": "patient",
+        "text": "Wednesday at four is better. I work until three."
+      },
+      {
+        "timestamp": "00:01:51",
+        "speaker": "rep",
+        "text": "Okay, I’ll schedule Wednesday at 4:00 p.m."
+      },
+      {
+        "timestamp": "00:01:58",
+        "speaker": "patient",
+        "text": "This is video or in person?"
+      },
+      {
+        "timestamp": "00:02:03",
+        "speaker": "rep",
+        "text": "This one is in person at our South clinic."
+      },
+      {
+        "timestamp": "00:02:09",
+        "speaker": "patient",
+        "text": "South clinic, yes, I know."
+      },
+      {
+        "timestamp": "00:02:15",
+        "speaker": "rep",
+        "text": "So that’s Wednesday, July 15 at 4:00 p.m. with Dr. Kim at the South clinic."
+      },
+      {
+        "timestamp": "00:02:26",
+        "speaker": "patient",
+        "text": "Okay, Wednesday July 15."
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "rep",
+        "text": "Please arrive ten minutes early and bring your insurance card if anything has changed."
+      },
+      {
+        "timestamp": "00:02:39",
+        "speaker": "patient",
+        "text": "Okay, thank you."
+      },
+      {
+        "timestamp": "00:02:43",
+        "speaker": "rep",
+        "text": "You’re welcome. Thanks for calling HealthBridge."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0006",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 426,
+    "rep_id": "REP-0015",
+    "patient_satisfaction_score": 4.6,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified identity before accessing the account. Clearly explained the billing statement and insurance processing, answered all patient questions, discussed payment options, summarized the remaining balance, and closed the call professionally.\nConcern: None observed.\nImpact: The representative resolved the patient's concern, clarified the billing information, and provided clear next steps for payment.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Daniel speaking. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi, I received an explanation of benefits from my insurance and then a bill from your office. The numbers don't match, and I'm confused."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I'd be happy to look into that. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:28",
+        "speaker": "patient",
+        "text": "Lydia Ann Greene, November twenty-second, nineteen fifty-nine."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you, Ms. Greene. Can you also confirm the ZIP code we have on file?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "Eight four one zero seven."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Perfect. Give me just a moment while I pull up your billing record."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "Alright, I have your account. I see a visit on June tenth. Is that the one you're calling about?"
+      },
+      {
+        "timestamp": "00:01:22",
+        "speaker": "patient",
+        "text": "Yes. The insurance paper shows over four hundred dollars, but your bill is much lower."
+      },
+      {
+        "timestamp": "00:01:33",
+        "speaker": "rep",
+        "text": "That's a very common question. The explanation of benefits shows the original amount billed before insurance processes the claim."
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "patient",
+        "text": "So that's not actually what I owe?"
+      },
+      {
+        "timestamp": "00:01:50",
+        "speaker": "rep",
+        "text": "Correct. The original charge was four hundred twenty dollars. Your insurance applied contractual adjustments and paid their portion. Your remaining responsibility is one hundred fifty-five dollars."
+      },
+      {
+        "timestamp": "00:02:07",
+        "speaker": "patient",
+        "text": "Oh... I thought they were trying to bill me twice."
+      },
+      {
+        "timestamp": "00:02:14",
+        "speaker": "rep",
+        "text": "I understand why it looks that way. The EOB explains how the claim was processed, while our statement reflects only what remains after insurance."
+      },
+      {
+        "timestamp": "00:02:28",
+        "speaker": "patient",
+        "text": "That makes a lot more sense now."
+      },
+      {
+        "timestamp": "00:02:33",
+        "speaker": "rep",
+        "text": "I'm glad to hear that. Would it be helpful if I explained each line on the statement as well?"
+      },
+      {
+        "timestamp": "00:02:42",
+        "speaker": "patient",
+        "text": "No, I think I understand now. I was mostly worried because the numbers were different."
+      },
+      {
+        "timestamp": "00:02:52",
+        "speaker": "rep",
+        "text": "Absolutely understandable. I also see you're eligible for a payment plan if paying the full amount at once would be difficult."
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "patient",
+        "text": "Really? What would that look like?"
+      },
+      {
+        "timestamp": "00:03:09",
+        "speaker": "rep",
+        "text": "For this balance, we could split it into three monthly payments of about fifty-two dollars each without interest."
+      },
+      {
+        "timestamp": "00:03:21",
+        "speaker": "patient",
+        "text": "I think I can manage the full amount, but it's nice to know that's available."
+      },
+      {
+        "timestamp": "00:03:30",
+        "speaker": "rep",
+        "text": "Of course. You can pay online through the patient portal, by phone, or by mail."
+      },
+      {
+        "timestamp": "00:03:40",
+        "speaker": "patient",
+        "text": "I'll probably use the portal tonight."
+      },
+      {
+        "timestamp": "00:03:45",
+        "speaker": "rep",
+        "text": "Perfect. Just log into your HealthBridge account, select Billing, and you'll see the June tenth statement."
+      },
+      {
+        "timestamp": "00:03:56",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:03:59",
+        "speaker": "rep",
+        "text": "So just to summarize, your insurance has already processed the claim, your remaining balance is one hundred fifty-five dollars, and you may pay it online or enroll in a payment plan if needed."
+      },
+      {
+        "timestamp": "00:04:15",
+        "speaker": "patient",
+        "text": "Wonderful. Thank you for explaining everything so clearly."
+      },
+      {
+        "timestamp": "00:04:21",
+        "speaker": "rep",
+        "text": "You're very welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:04:26",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:04:29",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0007",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 388,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 3.9,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified identity before accessing the account. Investigated the billing concern, explained the statement and remaining balance, answered the patient's questions, reassured the patient, and provided clear payment instructions and next steps.\nConcern: None observed.\nImpact: The patient's concern was resolved, reducing confusion about the billing statement and providing clear next steps for payment.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Erin. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I received another statement even though I already made a payment last month."
+      },
+      {
+        "timestamp": "00:00:17",
+        "speaker": "rep",
+        "text": "I'd be happy to check that for you. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Owen James Martinez, July ninth, nineteen seventy-seven."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you. Could you also verify your mailing ZIP code?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "Eight four zero nine four."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Perfect. One moment while I review your account."
+      },
+      {
+        "timestamp": "00:01:02",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:14",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I do see a payment of eighty dollars that posted on June eighteenth."
+      },
+      {
+        "timestamp": "00:01:24",
+        "speaker": "patient",
+        "text": "Right. That's exactly why I was confused."
+      },
+      {
+        "timestamp": "00:01:31",
+        "speaker": "rep",
+        "text": "The statement you received was actually generated two days before that payment posted to your account."
+      },
+      {
+        "timestamp": "00:01:42",
+        "speaker": "patient",
+        "text": "Oh, so the statement was already in the mail?"
+      },
+      {
+        "timestamp": "00:01:47",
+        "speaker": "rep",
+        "text": "Exactly. Sometimes there's a short delay between statement generation and payment processing."
+      },
+      {
+        "timestamp": "00:01:58",
+        "speaker": "patient",
+        "text": "That makes sense. Do I still owe anything?"
+      },
+      {
+        "timestamp": "00:02:04",
+        "speaker": "rep",
+        "text": "Yes. After your payment, there's a remaining balance of twenty-five dollars."
+      },
+      {
+        "timestamp": "00:02:13",
+        "speaker": "patient",
+        "text": "Where did that come from?"
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "rep",
+        "text": "It appears your insurance adjusted the office visit differently than originally estimated, leaving an additional copay responsibility."
+      },
+      {
+        "timestamp": "00:02:30",
+        "speaker": "patient",
+        "text": "Okay. Can I just pay that online?"
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "rep",
+        "text": "Yes. You can pay through the HealthBridge patient portal, over the phone, or by mailing a check."
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "patient",
+        "text": "I'll probably do it online after work."
+      },
+      {
+        "timestamp": "00:02:53",
+        "speaker": "rep",
+        "text": "That works."
+      },
+      {
+        "timestamp": "00:02:57",
+        "speaker": "patient",
+        "text": "If I don't pay it today, am I going to collections?"
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "rep",
+        "text": "No. Your account is current and not in collections."
+      },
+      {
+        "timestamp": "00:03:11",
+        "speaker": "patient",
+        "text": "Good. I was worried because the letter looked pretty serious."
+      },
+      {
+        "timestamp": "00:03:19",
+        "speaker": "rep",
+        "text": "I understand. Billing letters can definitely look intimidating."
+      },
+      {
+        "timestamp": "00:03:27",
+        "speaker": "patient",
+        "text": "Yeah, they do."
+      },
+      {
+        "timestamp": "00:03:31",
+        "speaker": "rep",
+        "text": "You can simply log into your portal and pay the remaining balance whenever it's convenient."
+      },
+      {
+        "timestamp": "00:03:41",
+        "speaker": "patient",
+        "text": "Alright. Thanks for checking."
+      },
+      {
+        "timestamp": "00:03:46",
+        "speaker": "rep",
+        "text": "You're welcome."
+      },
+      {
+        "timestamp": "00:03:50",
+        "speaker": "patient",
+        "text": "Have a good day."
+      },
+      {
+        "timestamp": "00:03:53",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0008",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 372,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 3.3,
+    "ground_truth_qa": {
+      "overall_score": 3.6,
+      "reviewer_notes": "Observed: The representative disclosed the patient's account balance and visit information before completing identity verification. Date of birth and ZIP code were verified only after billing information had already been discussed.\nConcern: Patient identity was verified after protected billing information had already been disclosed.\nImpact: Disclosing account information before identity verification may expose protected health information (PHI) and does not follow the required identity verification workflow.",
+      "dimension_scores": {
+        "greeting_identity_verification": 2,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 2,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Maya. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi, I'd like to find out how much I owe from my last visit."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "Of course. May I have your full name?"
+      },
+      {
+        "timestamp": "00:00:20",
+        "speaker": "patient",
+        "text": "Caleb Foster."
+      },
+      {
+        "timestamp": "00:00:25",
+        "speaker": "rep",
+        "text": "Thank you. One moment while I look that up."
+      },
+      {
+        "timestamp": "00:00:36",
+        "speaker": "rep",
+        "text": "I see an outstanding balance of $312.40 from your visit on May 28."
+      },
+      {
+        "timestamp": "00:00:45",
+        "speaker": "patient",
+        "text": "Wow, that's more than I expected. Why is it so high?"
+      },
+      {
+        "timestamp": "00:00:53",
+        "speaker": "rep",
+        "text": "It includes your office visit and laboratory charges after insurance processed the claim."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "patient",
+        "text": "Okay..."
+      },
+      {
+        "timestamp": "00:01:06",
+        "speaker": "rep",
+        "text": "Oh, I'm sorry. Before we continue, I do need to verify your identity. Can you provide your date of birth?"
+      },
+      {
+        "timestamp": "00:01:16",
+        "speaker": "patient",
+        "text": "February 2, 1990."
+      },
+      {
+        "timestamp": "00:01:22",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the ZIP code on your account?"
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "patient",
+        "text": "84044."
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "rep",
+        "text": "Perfect. Thank you for confirming."
+      },
+      {
+        "timestamp": "00:01:42",
+        "speaker": "patient",
+        "text": "Can you tell me exactly what the charges are for?"
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "rep",
+        "text": "Certainly. I see a level-3 office visit and routine laboratory testing completed during the same appointment."
+      },
+      {
+        "timestamp": "00:02:01",
+        "speaker": "patient",
+        "text": "Can I pay part of it now and the rest later?"
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "Yes. We accept partial payments, and we can also set up a payment plan if needed."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "I think I'll make a partial payment today."
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "rep",
+        "text": "That's perfectly fine. You can do that through the patient portal or I can process a payment over the phone."
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "patient",
+        "text": "I'll use the portal."
+      },
+      {
+        "timestamp": "00:02:41",
+        "speaker": "rep",
+        "text": "Sounds good. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:51",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0009",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 447,
+    "rep_id": "REP-0051",
+    "patient_satisfaction_score": 1.6,
+    "ground_truth_qa": {
+      "overall_score": 2.4,
+      "reviewer_notes": "Observed: Verified the patient's identity before accessing the account. The representative could not clearly explain the billing discrepancy, repeatedly relied on uncertain responses (\"probably\"), declined the patient's request to speak with a supervisor, did not offer a billing review or escalation, and ended the call without resolving the dispute.\nConcern: The billing dispute was neither investigated nor escalated despite the patient's repeated concerns and request for supervisory review. The representative's communication became dismissive and did not acknowledge the patient's frustration.\nImpact: The patient's concern remained unresolved, increasing the risk of dissatisfaction, formal complaints, and loss of trust. Failure to escalate a billing dispute may delay issue resolution and negatively affect the patient experience.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 2,
+        "accuracy_completeness": 2,
+        "protocol_adherence": 2,
+        "closing_next_steps": 2
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Tasha. How may I help you?"
+      },
+      {
+        "timestamp": "00:00:07",
+        "speaker": "patient",
+        "text": "I'm really upset. I think I was billed twice for the same appointment."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "I can take a look. May I have your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:23",
+        "speaker": "patient",
+        "text": "Robert Klein, May 6, 1962."
+      },
+      {
+        "timestamp": "00:00:31",
+        "speaker": "rep",
+        "text": "Thank you. Give me a moment while I review your account."
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:00:56",
+        "speaker": "rep",
+        "text": "I see 2 charges from your June 3 visit."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "patient",
+        "text": "Exactly. That's why I'm calling."
+      },
+      {
+        "timestamp": "00:01:09",
+        "speaker": "rep",
+        "text": "One is $190 and the other is $140. Your total balance is $390."
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "patient",
+        "text": "That doesn't even add up. $190 plus $140 isn't $390."
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "rep",
+        "text": "Well, that's what I'm seeing on my screen."
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "patient",
+        "text": "Can you explain what the charges actually are?"
+      },
+      {
+        "timestamp": "00:01:42",
+        "speaker": "rep",
+        "text": "It's probably an office visit and a facility charge. That's pretty normal."
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "patient",
+        "text": "Probably? You don't know?"
+      },
+      {
+        "timestamp": "00:01:58",
+        "speaker": "rep",
+        "text": "I'm telling you what it usually is."
+      },
+      {
+        "timestamp": "00:02:05",
+        "speaker": "patient",
+        "text": "I'd like someone to actually review the bill."
+      },
+      {
+        "timestamp": "00:02:12",
+        "speaker": "rep",
+        "text": "They're just going to tell you the same thing."
+      },
+      {
+        "timestamp": "00:02:19",
+        "speaker": "patient",
+        "text": "I'd still like to speak with a supervisor."
+      },
+      {
+        "timestamp": "00:02:26",
+        "speaker": "rep",
+        "text": "The supervisors are busy. There's really no reason to transfer you."
+      },
+      {
+        "timestamp": "00:02:35",
+        "speaker": "patient",
+        "text": "I've already called twice about this."
+      },
+      {
+        "timestamp": "00:02:41",
+        "speaker": "rep",
+        "text": "Well, I can't change what's on the account."
+      },
+      {
+        "timestamp": "00:02:48",
+        "speaker": "patient",
+        "text": "So you're saying I just have to pay it?"
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "rep",
+        "text": "If you don't want late fees, yes."
+      },
+      {
+        "timestamp": "00:03:01",
+        "speaker": "patient",
+        "text": "You're not listening to me. I don't even know if the amount is correct."
+      },
+      {
+        "timestamp": "00:03:10",
+        "speaker": "rep",
+        "text": "Like I said, that's what's on the screen."
+      },
+      {
+        "timestamp": "00:03:17",
+        "speaker": "patient",
+        "text": "Can you at least submit a review request?"
+      },
+      {
+        "timestamp": "00:03:23",
+        "speaker": "rep",
+        "text": "No, you'll have to wait until another statement is generated."
+      },
+      {
+        "timestamp": "00:03:31",
+        "speaker": "patient",
+        "text": "That's ridiculous."
+      },
+      {
+        "timestamp": "00:03:36",
+        "speaker": "rep",
+        "text": "Is there anything else?"
+      },
+      {
+        "timestamp": "00:03:40",
+        "speaker": "patient",
+        "text": "No. I'll be filing a complaint."
+      },
+      {
+        "timestamp": "00:03:45",
+        "speaker": "rep",
+        "text": "Okay. Goodbye."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0010",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 401,
+    "rep_id": "REP-0036",
+    "patient_satisfaction_score": 3.2,
+    "ground_truth_qa": {
+      "overall_score": 3.4,
+      "reviewer_notes": "Observed: Verified the patient's identity before accessing the account. Confirmed that the refund request was still under review, submitted another follow-up request, but could not explain the delay, provide a timeframe, or offer an escalation path.\nConcern: The patient's issue remained unresolved despite multiple previous contacts. No escalation option or estimated resolution timeframe was provided.\nImpact: The lack of a clear resolution path may increase patient frustration, lead to repeated contacts, and reduce confidence in the billing support process.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 4,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 2
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Luis. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I've called twice already about a refund, and nobody has contacted me."
+      },
+      {
+        "timestamp": "00:00:17",
+        "speaker": "rep",
+        "text": "I'm sorry you've had to call multiple times. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Mei Chen, December 14, 1985."
+      },
+      {
+        "timestamp": "00:00:35",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify your ZIP code?"
+      },
+      {
+        "timestamp": "00:00:41",
+        "speaker": "patient",
+        "text": "84095."
+      },
+      {
+        "timestamp": "00:00:47",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your account."
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see a credit balance of $64.20 that is pending refund review."
+      },
+      {
+        "timestamp": "00:01:23",
+        "speaker": "patient",
+        "text": "That's exactly what I was told 2 weeks ago."
+      },
+      {
+        "timestamp": "00:01:31",
+        "speaker": "rep",
+        "text": "I understand why that's frustrating."
+      },
+      {
+        "timestamp": "00:01:37",
+        "speaker": "patient",
+        "text": "Do you know why it hasn't been processed?"
+      },
+      {
+        "timestamp": "00:01:43",
+        "speaker": "rep",
+        "text": "I don't see a reason documented. It only shows that the refund is still under review."
+      },
+      {
+        "timestamp": "00:01:54",
+        "speaker": "patient",
+        "text": "Can you transfer me to the refund department?"
+      },
+      {
+        "timestamp": "00:02:01",
+        "speaker": "rep",
+        "text": "They don't accept direct calls from patients."
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "patient",
+        "text": "Then what am I supposed to do?"
+      },
+      {
+        "timestamp": "00:02:13",
+        "speaker": "rep",
+        "text": "I can place another note on your account requesting follow-up."
+      },
+      {
+        "timestamp": "00:02:22",
+        "speaker": "patient",
+        "text": "When will someone actually call me?"
+      },
+      {
+        "timestamp": "00:02:28",
+        "speaker": "rep",
+        "text": "I can't give you a timeframe."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "patient",
+        "text": "Today? Tomorrow? Next week?"
+      },
+      {
+        "timestamp": "00:02:40",
+        "speaker": "rep",
+        "text": "I'm not able to estimate when they'll review it."
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "patient",
+        "text": "Is there anything I can do to speed it up?"
+      },
+      {
+        "timestamp": "00:02:53",
+        "speaker": "rep",
+        "text": "Not at this time. I'll mark your account for another follow-up request."
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "patient",
+        "text": "I've already waited almost a month."
+      },
+      {
+        "timestamp": "00:03:10",
+        "speaker": "rep",
+        "text": "I understand, and I'm sorry for the inconvenience."
+      },
+      {
+        "timestamp": "00:03:17",
+        "speaker": "patient",
+        "text": "Alright. Please add the note."
+      },
+      {
+        "timestamp": "00:03:22",
+        "speaker": "rep",
+        "text": "I've added it to your account."
+      },
+      {
+        "timestamp": "00:03:28",
+        "speaker": "patient",
+        "text": "Okay. I guess I'll wait again."
+      },
+      {
+        "timestamp": "00:03:34",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0011",
+    "call_type": "clinical_triage",
+    "duration_seconds": 431,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 4.9,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified the patient's identity before proceeding. Recognized slurred speech and arm numbness as emergency symptoms, instructed the patient to call 911 immediately, advised the patient not to drive, confirmed that another person was present to assist, initiated a warm transfer to the triage nurse, and remained on the line until emergency care was coordinated.\nConcern: None observed.\nImpact: The representative appropriately recognized a potential medical emergency, ensured rapid escalation, and provided clear safety instructions, helping reduce the risk of delayed emergency care.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Erin. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi... I think something is wrong. My husband says my speech sounds strange, and my left arm feels numb."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I'm sorry you're experiencing that. Before we continue, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Janet Collins, August 18, 1958."
+      },
+      {
+        "timestamp": "00:00:38",
+        "speaker": "rep",
+        "text": "Thank you, Ms. Collins. Can you confirm the phone number you're calling from?"
+      },
+      {
+        "timestamp": "00:00:46",
+        "speaker": "patient",
+        "text": "801-555-6148."
+      },
+      {
+        "timestamp": "00:00:53",
+        "speaker": "rep",
+        "text": "Thank you. Ms. Collins, slurred speech and arm numbness can be signs of a medical emergency."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "patient",
+        "text": "I wasn't sure if I should just make an appointment."
+      },
+      {
+        "timestamp": "00:01:10",
+        "speaker": "rep",
+        "text": "No. I do not want you to wait for an office appointment."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "patient",
+        "text": "Okay..."
+      },
+      {
+        "timestamp": "00:01:22",
+        "speaker": "rep",
+        "text": "Are your symptoms happening right now?"
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "patient",
+        "text": "Yes. My arm still feels numb."
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "rep",
+        "text": "Thank you. I need you to call 911 immediately if you have not already done so. If someone is with you, have them call now."
+      },
+      {
+        "timestamp": "00:01:48",
+        "speaker": "patient",
+        "text": "My husband is here."
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "rep",
+        "text": "Please ask him to call 911 right away while I connect you with our triage nurse."
+      },
+      {
+        "timestamp": "00:02:03",
+        "speaker": "patient",
+        "text": "Alright, he's calling."
+      },
+      {
+        "timestamp": "00:02:09",
+        "speaker": "rep",
+        "text": "Thank you. Stay on the line with me. Do not drive yourself to the hospital."
+      },
+      {
+        "timestamp": "00:02:19",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "rep",
+        "text": "I'm notifying our clinical triage team and transferring you now. They'll remain on the line while emergency services are on the way."
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "patient",
+        "text": "Thank you."
+      },
+      {
+        "timestamp": "00:02:40",
+        "speaker": "rep",
+        "text": "You're welcome. Please stay on the line. I'm completing the warm transfer now."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0012",
+    "call_type": "clinical_triage",
+    "duration_seconds": 467,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 4.8,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified identity before accessing the chart. Completed an appropriate triage assessment, ruled out emergency symptoms, scheduled a follow-up appointment, provided clear return precautions, and confirmed the appointment details.\nConcern: None observed.\nImpact: The representative appropriately assessed the patient's symptoms, ruled out emergency warning signs, and ensured timely follow-up while providing clear safety instructions if symptoms worsened.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Maya. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I've had a rash on my forearm for about 3 days. It's itchy but I don't think it's serious."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your chart, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:28",
+        "speaker": "patient",
+        "text": "Melissa Harper, October 9, 1993."
+      },
+      {
+        "timestamp": "00:00:36",
+        "speaker": "rep",
+        "text": "Thank you, Ms. Harper. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "385-555-2271."
+      },
+      {
+        "timestamp": "00:00:51",
+        "speaker": "rep",
+        "text": "Thank you. Give me just a moment while I open your chart."
+      },
+      {
+        "timestamp": "00:01:02",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Can you tell me a little more about the rash? Where is it located?"
+      },
+      {
+        "timestamp": "00:01:21",
+        "speaker": "patient",
+        "text": "It's only on my left forearm. It's red and itchy."
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "rep",
+        "text": "Has it spread anywhere else?"
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "patient",
+        "text": "No."
+      },
+      {
+        "timestamp": "00:01:38",
+        "speaker": "rep",
+        "text": "Do you have trouble breathing, swelling of your lips or tongue, or a fever?"
+      },
+      {
+        "timestamp": "00:01:47",
+        "speaker": "patient",
+        "text": "No, none of those."
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "rep",
+        "text": "Any severe pain, blistering, or drainage?"
+      },
+      {
+        "timestamp": "00:01:59",
+        "speaker": "patient",
+        "text": "No. It's mostly just annoying."
+      },
+      {
+        "timestamp": "00:02:05",
+        "speaker": "rep",
+        "text": "Thank you. Based on what you've described, this doesn't sound like it requires emergency care, but you'll need to be evaluated by a provider."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:02:22",
+        "speaker": "rep",
+        "text": "I have an appointment available tomorrow at 10:20 a.m. with Dr. Lawson or Friday at 2:40 p.m. Which would you prefer?"
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "patient",
+        "text": "Tomorrow morning would be great."
+      },
+      {
+        "timestamp": "00:02:42",
+        "speaker": "rep",
+        "text": "Perfect. I'll schedule you for tomorrow, July 15, at 10:20 a.m. with Dr. Lawson."
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "patient",
+        "text": "Should I put anything on it before then?"
+      },
+      {
+        "timestamp": "00:03:00",
+        "speaker": "rep",
+        "text": "I can't provide medical advice over the phone, but if your symptoms suddenly worsen, if you develop difficulty breathing, facial swelling, or a high fever, seek immediate medical care."
+      },
+      {
+        "timestamp": "00:03:17",
+        "speaker": "patient",
+        "text": "Understood."
+      },
+      {
+        "timestamp": "00:03:21",
+        "speaker": "rep",
+        "text": "To confirm, you're scheduled for tomorrow, July 15, at 10:20 a.m. Please arrive 10 minutes early with your photo ID and insurance card."
+      },
+      {
+        "timestamp": "00:03:36",
+        "speaker": "patient",
+        "text": "Sounds good. Thank you."
+      },
+      {
+        "timestamp": "00:03:41",
+        "speaker": "rep",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:47",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:03:51",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0013",
+    "call_type": "clinical_triage",
+    "duration_seconds": 446,
+    "rep_id": "REP-0064",
+    "patient_satisfaction_score": 1.4,
+    "ground_truth_qa": {
+      "overall_score": 2.6,
+      "reviewer_notes": "Observed: The representative verified the patient's identity and asked about the chest pain, but scheduled an office appointment for the following day despite the patient reporting chest pain, shortness of breath, and worsening symptoms with exertion. No emergency escalation or instruction to call 911 was provided.\nConcern: Red-flag symptoms were not treated as a potential medical emergency. The representative scheduled a routine appointment instead of initiating emergency triage.\nImpact: Failure to recognize and escalate possible cardiac symptoms could delay emergency treatment and place the patient at significant risk of serious harm.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 1,
+        "protocol_adherence": 1,
+        "closing_next_steps": 2
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Ashley. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I've been having chest pain since this morning, and now I'm getting short of breath."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'm sorry you're not feeling well. Before I access your chart, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:28",
+        "speaker": "patient",
+        "text": "Thomas Rivera, January 27, 1971."
+      },
+      {
+        "timestamp": "00:00:36",
+        "speaker": "rep",
+        "text": "Thank you. Can you verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "801-555-9824."
+      },
+      {
+        "timestamp": "00:00:49",
+        "speaker": "rep",
+        "text": "Thank you. Give me just a moment while I pull up your chart."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Okay... it's just getting harder to catch my breath."
+      },
+      {
+        "timestamp": "00:01:11",
+        "speaker": "rep",
+        "text": "I see you're established with Dr. Morgan."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "patient",
+        "text": "Yes."
+      },
+      {
+        "timestamp": "00:01:22",
+        "speaker": "rep",
+        "text": "When did the chest pain start?"
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "patient",
+        "text": "Around 9:00 this morning. It's a heavy pressure in the middle of my chest."
+      },
+      {
+        "timestamp": "00:01:40",
+        "speaker": "rep",
+        "text": "Has it been constant?"
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "patient",
+        "text": "Mostly. Walking upstairs made it worse."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "rep",
+        "text": "Okay. Let me see what appointments we have available."
+      },
+      {
+        "timestamp": "00:02:05",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:02:10",
+        "speaker": "rep",
+        "text": "Dr. Morgan is fully booked today, but I can get you in tomorrow morning at 8:40 a.m."
+      },
+      {
+        "timestamp": "00:02:22",
+        "speaker": "patient",
+        "text": "Tomorrow? I don't know... I don't feel very good."
+      },
+      {
+        "timestamp": "00:02:30",
+        "speaker": "rep",
+        "text": "That's the earliest office visit I have available."
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "patient",
+        "text": "Should I just rest until then?"
+      },
+      {
+        "timestamp": "00:02:44",
+        "speaker": "rep",
+        "text": "Yes, try to take it easy today and come in tomorrow morning."
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "patient",
+        "text": "Okay..."
+      },
+      {
+        "timestamp": "00:02:58",
+        "speaker": "rep",
+        "text": "I've scheduled you for July 16 at 8:40 a.m. with Dr. Morgan."
+      },
+      {
+        "timestamp": "00:03:08",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:03:12",
+        "speaker": "rep",
+        "text": "Please arrive 15 minutes early with your insurance card."
+      },
+      {
+        "timestamp": "00:03:20",
+        "speaker": "patient",
+        "text": "I'll try."
+      },
+      {
+        "timestamp": "00:03:24",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:30",
+        "speaker": "patient",
+        "text": "No."
+      },
+      {
+        "timestamp": "00:03:33",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0014",
+    "call_type": "clinical_triage",
+    "duration_seconds": 482,
+    "rep_id": "REP-0029",
+    "patient_satisfaction_score": 1.8,
+    "ground_truth_qa": {
+      "overall_score": 1.7,
+      "reviewer_notes": "Observed: The representative verified the patient's identity and acknowledged the patient's emotional distress. The patient stated that they did not want to be alive and believed others would be better off without them. The representative scheduled a behavioral health appointment four days later without assessing immediate suicide risk or initiating an emergency mental health escalation.\nConcern: The patient's statements indicated possible suicidal ideation, but no suicide risk assessment or emergency escalation was initiated.\nImpact: Failure to recognize and respond to potential suicidal ideation could delay urgent mental health intervention and place the patient at immediate risk of serious harm.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 2,
+        "accuracy_completeness": 1,
+        "protocol_adherence": 1,
+        "closing_next_steps": 1
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Nicole. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi... I'm not really sure who to talk to. I've been feeling like I don't want to be here anymore."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I'm sorry you're having a difficult time. Before I access your chart, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:30",
+        "speaker": "patient",
+        "text": "Emily Dawson, April 21, 1991."
+      },
+      {
+        "timestamp": "00:00:38",
+        "speaker": "rep",
+        "text": "Thank you. Can you verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:45",
+        "speaker": "patient",
+        "text": "385-555-4708."
+      },
+      {
+        "timestamp": "00:00:52",
+        "speaker": "rep",
+        "text": "Thank you. Give me a moment while I open your chart."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "I have your record. Can you tell me a little more about what's been going on?"
+      },
+      {
+        "timestamp": "00:01:21",
+        "speaker": "patient",
+        "text": "I've been depressed for weeks. Today I just keep thinking everyone would be better off without me."
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "rep",
+        "text": "I'm really sorry you're feeling that way."
+      },
+      {
+        "timestamp": "00:01:41",
+        "speaker": "patient",
+        "text": "I almost didn't call."
+      },
+      {
+        "timestamp": "00:01:47",
+        "speaker": "rep",
+        "text": "I'm glad you called us."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "patient",
+        "text": "I don't know what to do."
+      },
+      {
+        "timestamp": "00:01:59",
+        "speaker": "rep",
+        "text": "Let me see what appointments are available with behavioral health."
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:02:17",
+        "speaker": "rep",
+        "text": "The earliest appointment I have is Monday at 2:30 p.m."
+      },
+      {
+        "timestamp": "00:02:28",
+        "speaker": "patient",
+        "text": "That's 4 days away."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "rep",
+        "text": "Yes, unfortunately that's the first opening."
+      },
+      {
+        "timestamp": "00:02:42",
+        "speaker": "patient",
+        "text": "I was hoping to talk to someone sooner."
+      },
+      {
+        "timestamp": "00:02:49",
+        "speaker": "rep",
+        "text": "I understand. I'll reserve the Monday appointment for you."
+      },
+      {
+        "timestamp": "00:02:59",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "rep",
+        "text": "You're scheduled for Monday, July 20, at 2:30 p.m. with Behavioral Health."
+      },
+      {
+        "timestamp": "00:03:15",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:03:19",
+        "speaker": "rep",
+        "text": "Please arrive 15 minutes early to complete any paperwork."
+      },
+      {
+        "timestamp": "00:03:28",
+        "speaker": "patient",
+        "text": "I'll try."
+      },
+      {
+        "timestamp": "00:03:33",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:40",
+        "speaker": "patient",
+        "text": "No."
+      },
+      {
+        "timestamp": "00:03:43",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Take care."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0015",
+    "call_type": "clinical_triage",
+    "duration_seconds": 421,
+    "rep_id": "REP-0047",
+    "patient_satisfaction_score": 3.5,
+    "ground_truth_qa": {
+      "overall_score": 3.6,
+      "reviewer_notes": "Observed: Verified the patient's identity before accessing the chart. Assessed the headache by asking about onset, medication use, fever, vomiting, and blurred vision. The representative advised that the patient should be evaluated the same day but, after finding no appointments available, scheduled an office visit for the following morning and advised the patient to go to the emergency department only if symptoms worsened\nConcern: Additional assessment for potential neurological red flags was not documented. Although same-day evaluation was recommended, the patient was scheduled for the following morning without a clear alternative plan for immediate evaluation.\nImpact: An incomplete triage assessment or delayed evaluation could postpone recognition of a potentially serious neurological condition if the patient's symptoms represent an emergency",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 4,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 4
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Olivia. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I've had a really bad headache since this morning, and now my vision is getting blurry."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'm sorry you're not feeling well. Before I access your chart, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:28",
+        "speaker": "patient",
+        "text": "Sandra Mitchell, February 14, 1976."
+      },
+      {
+        "timestamp": "00:00:36",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify your phone number?"
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "385-555-3196."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Thank you. Give me just a moment while I open your chart."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:11",
+        "speaker": "rep",
+        "text": "Can you tell me when the headache started?"
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "patient",
+        "text": "Around 8:00 this morning. It's much worse now."
+      },
+      {
+        "timestamp": "00:01:27",
+        "speaker": "rep",
+        "text": "Have you taken anything for it?"
+      },
+      {
+        "timestamp": "00:01:33",
+        "speaker": "patient",
+        "text": "I took ibuprofen, but it didn't really help."
+      },
+      {
+        "timestamp": "00:01:42",
+        "speaker": "rep",
+        "text": "Are you having any fever or vomiting?"
+      },
+      {
+        "timestamp": "00:01:48",
+        "speaker": "patient",
+        "text": "No fever. I feel a little nauseated though."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "rep",
+        "text": "Okay. Since your vision is blurry, I do think you should be evaluated today."
+      },
+      {
+        "timestamp": "00:02:07",
+        "speaker": "patient",
+        "text": "Should I come into the clinic?"
+      },
+      {
+        "timestamp": "00:02:12",
+        "speaker": "rep",
+        "text": "We don't have any appointments left today."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "What should I do then?"
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "rep",
+        "text": "If your symptoms get worse, you should go to the emergency room."
+      },
+      {
+        "timestamp": "00:02:32",
+        "speaker": "patient",
+        "text": "Okay..."
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "rep",
+        "text": "Otherwise, I can schedule you with Dr. Patel tomorrow morning at 9:10."
+      },
+      {
+        "timestamp": "00:02:46",
+        "speaker": "patient",
+        "text": "Alright, let's do that."
+      },
+      {
+        "timestamp": "00:02:52",
+        "speaker": "rep",
+        "text": "You're scheduled for tomorrow, July 16, at 9:10 a.m. with Dr. Patel."
+      },
+      {
+        "timestamp": "00:03:03",
+        "speaker": "patient",
+        "text": "Thank you."
+      },
+      {
+        "timestamp": "00:03:07",
+        "speaker": "rep",
+        "text": "Please arrive 15 minutes early with your insurance card and photo ID."
+      },
+      {
+        "timestamp": "00:03:17",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:03:21",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:27",
+        "speaker": "patient",
+        "text": "No, that's all."
+      },
+      {
+        "timestamp": "00:03:30",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0016",
+    "call_type": "insurance_verification",
+    "duration_seconds": 304,
+    "rep_id": "REP-0015",
+    "patient_satisfaction_score": 4.7,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified identity before accessing the account. Confirmed active insurance coverage, explained the estimated copay, clarified that final benefits depend on claim processing, confirmed appointment details, reviewed check-in instructions, and summarized the next steps.\nConcern: None observed.\nImpact: The representative provided clear insurance information and appropriate expectations regarding coverage, helping the patient prepare for the upcoming visit.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Daniel. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi, I need to check if my insurance is active before my appointment next week."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I can help verify what we have on file. Before I access your account, may I have your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Brian Walsh, June 4, 1984."
+      },
+      {
+        "timestamp": "00:00:34",
+        "speaker": "rep",
+        "text": "Thank you. Can you also confirm the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:41",
+        "speaker": "patient",
+        "text": "801-555-7342."
+      },
+      {
+        "timestamp": "00:00:47",
+        "speaker": "rep",
+        "text": "Perfect. Give me a moment while I pull up your insurance information."
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see MountainCare Plus listed as your active plan."
+      },
+      {
+        "timestamp": "00:01:21",
+        "speaker": "patient",
+        "text": "Okay. Do you know if my appointment will have a copay?"
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "rep",
+        "text": "For a primary care office visit, the eligibility response shows a $25 copay."
+      },
+      {
+        "timestamp": "00:01:37",
+        "speaker": "patient",
+        "text": "That's what I thought, but I wanted to make sure."
+      },
+      {
+        "timestamp": "00:01:43",
+        "speaker": "rep",
+        "text": "That makes sense. I do want to mention that final benefits are determined by your insurance carrier when the claim is processed."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "patient",
+        "text": "Right, understood."
+      },
+      {
+        "timestamp": "00:02:00",
+        "speaker": "rep",
+        "text": "Your appointment is currently scheduled for July 22 at 11:00 a.m. with Dr. Chen, and your MountainCare Plus plan is on file."
+      },
+      {
+        "timestamp": "00:02:12",
+        "speaker": "patient",
+        "text": "Great."
+      },
+      {
+        "timestamp": "00:02:15",
+        "speaker": "rep",
+        "text": "Please bring your insurance card and photo ID to the visit so we can confirm everything at check-in."
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "patient",
+        "text": "I will."
+      },
+      {
+        "timestamp": "00:02:27",
+        "speaker": "rep",
+        "text": "To summarize, your MountainCare Plus plan is showing active, the estimated primary care copay is $25, and we'll recheck the card at your visit."
+      },
+      {
+        "timestamp": "00:02:40",
+        "speaker": "patient",
+        "text": "Perfect. Thank you."
+      },
+      {
+        "timestamp": "00:02:44",
+        "speaker": "rep",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:49",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:52",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0017",
+    "call_type": "insurance_verification",
+    "duration_seconds": 337,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 2.9,
+    "ground_truth_qa": {
+      "overall_score": 3.9,
+      "reviewer_notes": "Observed: The representative verified the patient's identity and confirmed the active insurance plan and estimated copay. However, when the patient expressed confusion and concern about the insurance change and possible unexpected bills, the representative provided brief, repetitive answers and did not clearly explain the coverage or acknowledge the patient's concerns.\nConcern: The patient's confusion and anxiety about insurance coverage were not adequately acknowledged, and the explanation provided was limited.\nImpact: Limited explanation and lack of reassurance may leave the patient uncertain about their insurance coverage and upcoming visit.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 3,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 4,
+        "closing_next_steps": 4
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Erin. How may I help you?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hello, dear. I received a letter saying my insurance changed, and I'm worried my appointment won't be covered."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I can check that. Before I access your account, may I have your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Margaret Ellis, September 17, 1942."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you. Can you verify your phone number?"
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "I think it's 801-555-1849."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "One moment."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "rep",
+        "text": "Okay, I see your account."
+      },
+      {
+        "timestamp": "00:01:09",
+        "speaker": "patient",
+        "text": "Thank you. I'm just nervous because I don't really understand insurance."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "rep",
+        "text": "Your old plan ended on June 30. Your new Medicare Advantage plan became active on July 1."
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "patient",
+        "text": "So... am I covered?"
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "rep",
+        "text": "Yes."
+      },
+      {
+        "timestamp": "00:01:38",
+        "speaker": "patient",
+        "text": "Will I have to pay anything?"
+      },
+      {
+        "timestamp": "00:01:44",
+        "speaker": "rep",
+        "text": "Your eligibility response shows a $15 primary care copay."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "patient",
+        "text": "Is that all?"
+      },
+      {
+        "timestamp": "00:01:57",
+        "speaker": "rep",
+        "text": "That's what I see."
+      },
+      {
+        "timestamp": "00:02:02",
+        "speaker": "patient",
+        "text": "Do I need to bring the new insurance card?"
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "Yes, bring the new card."
+      },
+      {
+        "timestamp": "00:02:13",
+        "speaker": "patient",
+        "text": "I'm sorry. Could you explain again what changed?"
+      },
+      {
+        "timestamp": "00:02:21",
+        "speaker": "rep",
+        "text": "Like I said, the old plan ended and the new one started."
+      },
+      {
+        "timestamp": "00:02:29",
+        "speaker": "patient",
+        "text": "I'm just afraid I'll get another surprise bill."
+      },
+      {
+        "timestamp": "00:02:37",
+        "speaker": "rep",
+        "text": "Just bring your card. They'll verify it at check-in."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "patient",
+        "text": "Alright... I think so."
+      },
+      {
+        "timestamp": "00:02:50",
+        "speaker": "rep",
+        "text": "Anything else?"
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "patient",
+        "text": "No, thank you."
+      },
+      {
+        "timestamp": "00:02:57",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0018",
+    "call_type": "insurance_verification",
+    "duration_seconds": 326,
+    "rep_id": "REP-0058",
+    "patient_satisfaction_score": 3.6,
+    "ground_truth_qa": {
+      "overall_score": 2.8,
+      "reviewer_notes": "Observed: The representative verified only the patient's name before accessing the account. The account information and insurance details were discussed without confirming the patient's date of birth before account access.\nConcern: Patient identity was not fully verified before protected account information was accessed and discussed.\nImpact: Incomplete identity verification could result in unauthorized disclosure of protected health information and does not meet the required verification workflow.",
+      "dimension_scores": {
+        "greeting_identity_verification": 1,
+        "empathy_tone": 4,
+        "accuracy_completeness": 2,
+        "protocol_adherence": 2,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Kevin. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I want to make sure my insurance is active before my appointment next week."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "Certainly. May I have your full name?"
+      },
+      {
+        "timestamp": "00:00:21",
+        "speaker": "patient",
+        "text": "Rachel Simmons."
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "rep",
+        "text": "Thank you, Ms. Simmons. One moment while I locate your account."
+      },
+      {
+        "timestamp": "00:00:39",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:00:51",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I found your record."
+      },
+      {
+        "timestamp": "00:00:58",
+        "speaker": "patient",
+        "text": "Great."
+      },
+      {
+        "timestamp": "00:01:03",
+        "speaker": "rep",
+        "text": "I see your HealthFirst PPO policy is active through December 31."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "patient",
+        "text": "Perfect. Is my annual physical covered?"
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "rep",
+        "text": "According to the eligibility response, preventive annual wellness visits are covered. Any additional services ordered during the visit may be billed separately depending on your benefits."
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "patient",
+        "text": "That makes sense."
+      },
+      {
+        "timestamp": "00:01:39",
+        "speaker": "rep",
+        "text": "Your current copay for preventive primary care is listed as $0."
+      },
+      {
+        "timestamp": "00:01:48",
+        "speaker": "patient",
+        "text": "That's good news."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "rep",
+        "text": "Your appointment is scheduled for July 23 at 9:00 a.m. with Dr. Lawson."
+      },
+      {
+        "timestamp": "00:02:03",
+        "speaker": "patient",
+        "text": "Yes, that's correct."
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "Please remember to bring your insurance card and photo ID in case we need to scan updated information."
+      },
+      {
+        "timestamp": "00:02:19",
+        "speaker": "patient",
+        "text": "I will."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "rep",
+        "text": "To summarize, your HealthFirst PPO coverage is active, your preventive visit shows a $0 copay, and your appointment remains scheduled for July 23 at 9:00 a.m."
+      },
+      {
+        "timestamp": "00:02:40",
+        "speaker": "patient",
+        "text": "Excellent. Thank you for checking."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "rep",
+        "text": "You're welcome. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0019",
+    "call_type": "insurance_verification",
+    "duration_seconds": 371,
+    "rep_id": "REP-0041",
+    "patient_satisfaction_score": 1.5,
+    "ground_truth_qa": {
+      "overall_score": 2.3,
+      "reviewer_notes": "Observed: The representative did not verify the caller's authorization to access the patient's account. After the caller identified himself as the patient's husband, the representative accessed the patient's record and disclosed insurance coverage, appointment details, provider information, and MRI authorization status without confirming the patient's identity or documented permission.\nConcern: Protected health information was disclosed to a third party without verifying authorization or obtaining patient consent.\nImpact: Unauthorized disclosure of protected health information could violate privacy requirements and expose confidential patient information to an individual without confirmed access rights.",
+      "dimension_scores": {
+        "greeting_identity_verification": 1,
+        "empathy_tone": 4,
+        "accuracy_completeness": 1,
+        "protocol_adherence": 1,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Amanda. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I'm calling about my wife, Jennifer Cole. I want to verify her insurance coverage before her appointment."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I'd be happy to help. May I have your name?"
+      },
+      {
+        "timestamp": "00:00:25",
+        "speaker": "patient",
+        "text": "I'm David Cole. I'm her husband."
+      },
+      {
+        "timestamp": "00:00:31",
+        "speaker": "rep",
+        "text": "Thank you, Mr. Cole. One moment while I locate her account."
+      },
+      {
+        "timestamp": "00:00:43",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:00:55",
+        "speaker": "rep",
+        "text": "I found Jennifer's record."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Great. Is her insurance still active?"
+      },
+      {
+        "timestamp": "00:01:08",
+        "speaker": "rep",
+        "text": "Yes. Her Blue Horizon PPO coverage is active through the end of the year."
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "patient",
+        "text": "Perfect. She has an appointment next week. Is there a copay?"
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "rep",
+        "text": "Her eligibility response shows a $30 specialist copay."
+      },
+      {
+        "timestamp": "00:01:38",
+        "speaker": "patient",
+        "text": "Okay. Is it still with Dr. Patel?"
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "rep",
+        "text": "Yes. She's scheduled for July 22 at 2:20 p.m. with Dr. Patel."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "patient",
+        "text": "Good. She thought it might have been changed."
+      },
+      {
+        "timestamp": "00:02:03",
+        "speaker": "rep",
+        "text": "No, it's still on the schedule."
+      },
+      {
+        "timestamp": "00:02:09",
+        "speaker": "patient",
+        "text": "She had an MRI recently. Has the insurance approved it yet?"
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "rep",
+        "text": "I can see the authorization was approved yesterday."
+      },
+      {
+        "timestamp": "00:02:28",
+        "speaker": "patient",
+        "text": "Excellent. She'll be relieved."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "rep",
+        "text": "Is there anything else you'd like me to check on her account?"
+      },
+      {
+        "timestamp": "00:02:42",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "rep",
+        "text": "You're welcome. Thank you for calling HealthBridge."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0020",
+    "call_type": "insurance_verification",
+    "duration_seconds": 349,
+    "rep_id": "REP-0069",
+    "patient_satisfaction_score": 3.4,
+    "ground_truth_qa": {
+      "overall_score": 4.4,
+      "reviewer_notes": "Observed: The representative verified the patient's identity and confirmed the active insurance plan. When the patient asked about referral requirements, the representative explained that the information was not available in the system but did not provide a clear follow-up plan or offer to connect the patient with someone who could verify the referral requirements.\nConcern: The patient remained uncertain about the referral process and the steps needed to avoid problems with the upcoming appointment.\nImpact: Unclear guidance could result in the patient arriving without the required referral, potentially delaying or affecting the scheduled visit.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 4,
+        "closing_next_steps": 4
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Jordan. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I received a letter saying my insurance plan changed this month, and I'm not sure what I need to do before my appointment."
+      },
+      {
+        "timestamp": "00:00:19",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Michael Turner, November 8, 1980."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "801-555-4438."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your insurance information."
+      },
+      {
+        "timestamp": "00:01:02",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:15",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see your previous plan ended on June 30, and your new Summit Health HMO became active on July 1."
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "patient",
+        "text": "Okay. Does that mean my appointment is still covered?"
+      },
+      {
+        "timestamp": "00:01:36",
+        "speaker": "rep",
+        "text": "Your coverage appears active, but HMOs sometimes require updated referrals."
+      },
+      {
+        "timestamp": "00:01:46",
+        "speaker": "patient",
+        "text": "Do I already have one?"
+      },
+      {
+        "timestamp": "00:01:51",
+        "speaker": "rep",
+        "text": "I can't tell from our system."
+      },
+      {
+        "timestamp": "00:01:57",
+        "speaker": "patient",
+        "text": "What should I do then?"
+      },
+      {
+        "timestamp": "00:02:02",
+        "speaker": "rep",
+        "text": "You'll probably need to contact your insurance company."
+      },
+      {
+        "timestamp": "00:02:10",
+        "speaker": "patient",
+        "text": "Should I call my primary care doctor first?"
+      },
+      {
+        "timestamp": "00:02:16",
+        "speaker": "rep",
+        "text": "You can try your insurance first."
+      },
+      {
+        "timestamp": "00:02:23",
+        "speaker": "patient",
+        "text": "If they tell me I need a referral, can HealthBridge request one?"
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "rep",
+        "text": "I'm not sure. You'd have to ask them."
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "patient",
+        "text": "I'm just trying to avoid having my appointment canceled."
+      },
+      {
+        "timestamp": "00:02:46",
+        "speaker": "rep",
+        "text": "I understand."
+      },
+      {
+        "timestamp": "00:02:51",
+        "speaker": "patient",
+        "text": "So there's nothing else I should do?"
+      },
+      {
+        "timestamp": "00:02:57",
+        "speaker": "rep",
+        "text": "Just check with your insurance company."
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "patient",
+        "text": "Alright. I'll start there."
+      },
+      {
+        "timestamp": "00:03:09",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0021",
+    "call_type": "prescription_refill",
+    "duration_seconds": 356,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 4.8,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified the patient's identity before accessing the account. Confirmed the medication, refill eligibility, and preferred pharmacy, submitted the refill request to the provider, explained the expected processing time and possible follow-up requirement, summarized the next steps, and closed the call professionally.\nConcern: None observed.\nImpact: The representative provided clear refill instructions and appropriate expectations, helping ensure continuity of the patient's medication.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Maya. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I'd like to request a refill for my blood pressure medication."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Steven Reynolds, March 18, 1969."
+      },
+      {
+        "timestamp": "00:00:35",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:42",
+        "speaker": "patient",
+        "text": "801-555-6618."
+      },
+      {
+        "timestamp": "00:00:48",
+        "speaker": "rep",
+        "text": "Perfect. Give me a moment while I review your medication list."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see you're requesting a refill for Lisinopril 20 mg."
+      },
+      {
+        "timestamp": "00:01:23",
+        "speaker": "patient",
+        "text": "That's right."
+      },
+      {
+        "timestamp": "00:01:28",
+        "speaker": "rep",
+        "text": "I also see your last refill was about 28 days ago, so you're eligible for another refill."
+      },
+      {
+        "timestamp": "00:01:39",
+        "speaker": "patient",
+        "text": "Great."
+      },
+      {
+        "timestamp": "00:01:43",
+        "speaker": "rep",
+        "text": "Would you like us to send it to the same pharmacy on Redwood Road?"
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "patient",
+        "text": "Yes, please."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "rep",
+        "text": "Perfect. I'll submit the refill request to your provider for approval."
+      },
+      {
+        "timestamp": "00:02:06",
+        "speaker": "patient",
+        "text": "How long does that usually take?"
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "rep",
+        "text": "Most refill requests are reviewed within 1 business day, although it may take a little longer during weekends or holidays."
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:02:28",
+        "speaker": "rep",
+        "text": "I also want to let you know that this appears to be your last refill under the current prescription. Your provider may ask you to schedule a follow-up visit before additional refills are authorized."
+      },
+      {
+        "timestamp": "00:02:46",
+        "speaker": "patient",
+        "text": "Thanks for letting me know. I'll keep an eye on that."
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "rep",
+        "text": "To summarize, your refill request for Lisinopril 20 mg has been submitted to your provider, it will be sent to your usual pharmacy after approval, and you may need a follow-up appointment before future refills."
+      },
+      {
+        "timestamp": "00:03:13",
+        "speaker": "patient",
+        "text": "Perfect. Thank you very much."
+      },
+      {
+        "timestamp": "00:03:18",
+        "speaker": "rep",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:24",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:03:27",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0022",
+    "call_type": "prescription_refill",
+    "duration_seconds": 332,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 3.8,
+    "ground_truth_qa": {
+      "overall_score": 4.5,
+      "reviewer_notes": "Observed: The representative verified the patient's identity, confirmed the medication and refill status, and explained the approval process. However, the preferred pharmacy was not confirmed before processing the refill request and was discussed only after the patient mentioned having changed pharmacies\nConcern: The preferred pharmacy was not proactively confirmed before initiating the refill process.\nImpact: Failure to confirm the preferred pharmacy before processing the refill could delay medication fulfillment or result in the prescription being sent to the wrong pharmacy if the patient had not raised the issue.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 4,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Erin. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I'd like to refill my cholesterol medication."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:26",
+        "speaker": "patient",
+        "text": "Donna Pierce, July 30, 1957."
+      },
+      {
+        "timestamp": "00:00:34",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:41",
+        "speaker": "patient",
+        "text": "801-555-2278."
+      },
+      {
+        "timestamp": "00:00:47",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your medication list."
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:11",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see you're requesting Atorvastatin 40 mg."
+      },
+      {
+        "timestamp": "00:01:20",
+        "speaker": "patient",
+        "text": "Yes, that's correct."
+      },
+      {
+        "timestamp": "00:01:26",
+        "speaker": "rep",
+        "text": "Your prescription still has refills remaining, so I'll send the request to your provider for approval."
+      },
+      {
+        "timestamp": "00:01:37",
+        "speaker": "patient",
+        "text": "Great. How long should that take?"
+      },
+      {
+        "timestamp": "00:01:44",
+        "speaker": "rep",
+        "text": "Most refill requests are completed within 1 business day."
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "patient",
+        "text": "That's good."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "rep",
+        "text": "You'll receive a text message once the refill has been approved."
+      },
+      {
+        "timestamp": "00:02:04",
+        "speaker": "patient",
+        "text": "Perfect."
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "Is there anything else regarding your medications I can help you with?"
+      },
+      {
+        "timestamp": "00:02:15",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:20",
+        "speaker": "rep",
+        "text": "Wonderful. Thank you for calling HealthBridge."
+      },
+      {
+        "timestamp": "00:02:26",
+        "speaker": "patient",
+        "text": "Actually..."
+      },
+      {
+        "timestamp": "00:02:29",
+        "speaker": "rep",
+        "text": "Yes?"
+      },
+      {
+        "timestamp": "00:02:32",
+        "speaker": "patient",
+        "text": "I switched pharmacies last month. Will it go to Green Valley Pharmacy?"
+      },
+      {
+        "timestamp": "00:02:41",
+        "speaker": "rep",
+        "text": "I can update that after we finish the refill request."
+      },
+      {
+        "timestamp": "00:02:48",
+        "speaker": "patient",
+        "text": "Okay, thanks."
+      },
+      {
+        "timestamp": "00:02:52",
+        "speaker": "rep",
+        "text": "You're welcome. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0023",
+    "call_type": "prescription_refill",
+    "duration_seconds": 389,
+    "rep_id": "REP-0053",
+    "patient_satisfaction_score": 2.0,
+    "ground_truth_qa": {
+      "overall_score": 4.0,
+      "reviewer_notes": "Observed: The patient reported doubling the Metformin dose without provider guidance because blood sugar had been running high. The representative continued processing the refill but did not advise the patient to contact the prescribing provider or document that the medication change should be reviewed before continuing treatment.\nConcern: The patient's self-adjustment of medication dosage was not appropriately escalated for provider review.\nImpact: Continuing a refill without addressing an unauthorized dose change could delay appropriate clinical evaluation and increase the risk of unsafe medication use.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Lauren. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I need a refill for my Metformin."
+      },
+      {
+        "timestamp": "00:00:15",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:26",
+        "speaker": "patient",
+        "text": "Patrick Holmes, January 15, 1964."
+      },
+      {
+        "timestamp": "00:00:34",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:41",
+        "speaker": "patient",
+        "text": "801-555-8032."
+      },
+      {
+        "timestamp": "00:00:47",
+        "speaker": "rep",
+        "text": "Perfect. Give me a moment while I review your medication history."
+      },
+      {
+        "timestamp": "00:00:59",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:11",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see you're requesting Metformin 500 mg."
+      },
+      {
+        "timestamp": "00:01:20",
+        "speaker": "patient",
+        "text": "Yes. I ran out yesterday."
+      },
+      {
+        "timestamp": "00:01:27",
+        "speaker": "rep",
+        "text": "I'll submit the refill request to your provider."
+      },
+      {
+        "timestamp": "00:01:35",
+        "speaker": "patient",
+        "text": "I should probably tell you... I've actually been taking 2 tablets instead of 1 because my blood sugar has been running high."
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "rep",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "patient",
+        "text": "I figured I'd just double it until I could get another prescription."
+      },
+      {
+        "timestamp": "00:02:02",
+        "speaker": "rep",
+        "text": "I understand."
+      },
+      {
+        "timestamp": "00:02:06",
+        "speaker": "patient",
+        "text": "Is that why I ran out early?"
+      },
+      {
+        "timestamp": "00:02:12",
+        "speaker": "rep",
+        "text": "That would explain it."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "Will the refill still go through?"
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "rep",
+        "text": "Yes, I'll send the refill request today."
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "patient",
+        "text": "Okay, thanks."
+      },
+      {
+        "timestamp": "00:02:36",
+        "speaker": "rep",
+        "text": "It usually takes about 1 business day for provider approval."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "patient",
+        "text": "That's fine."
+      },
+      {
+        "timestamp": "00:02:49",
+        "speaker": "rep",
+        "text": "The refill will be sent to your pharmacy once it's approved."
+      },
+      {
+        "timestamp": "00:02:57",
+        "speaker": "patient",
+        "text": "Perfect."
+      },
+      {
+        "timestamp": "00:03:01",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:07",
+        "speaker": "patient",
+        "text": "No, that's all."
+      },
+      {
+        "timestamp": "00:03:10",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0024",
+    "call_type": "prescription_refill",
+    "duration_seconds": 374,
+    "rep_id": "REP-0062",
+    "patient_satisfaction_score": 2.2,
+    "ground_truth_qa": {
+      "overall_score": 4.0,
+      "reviewer_notes": "Observed: The patient reported taking more Hydrocodone-acetaminophen than prescribed because the pain was severe and the medication ran out early. The representative submitted an urgent refill request but did not advise that the provider should review the patient's worsening pain or the unauthorized dose increase.\nConcern: Possible unsafe medication use and uncontrolled pain were not escalated for provider review.\nImpact: Failing to address early opioid use and worsening pain may delay reassessment of the patient's condition and appropriate treatment plan",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 3,
+        "protocol_adherence": 3,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Brandon. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I need a refill on my pain medication."
+      },
+      {
+        "timestamp": "00:00:14",
+        "speaker": "rep",
+        "text": "I can look into that. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:24",
+        "speaker": "patient",
+        "text": "Gary Nelson, May 11, 1978."
+      },
+      {
+        "timestamp": "00:00:31",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:38",
+        "speaker": "patient",
+        "text": "801-555-9063."
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "rep",
+        "text": "Thank you. Give me a moment while I review your medication list."
+      },
+      {
+        "timestamp": "00:00:56",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:08",
+        "speaker": "rep",
+        "text": "I see Hydrocodone-acetaminophen 5-325 mg prescribed after your shoulder procedure."
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "patient",
+        "text": "Yes, that one. I'm out."
+      },
+      {
+        "timestamp": "00:01:25",
+        "speaker": "rep",
+        "text": "It looks like the prescription was filled 9 days ago for a 14-day supply."
+      },
+      {
+        "timestamp": "00:01:36",
+        "speaker": "patient",
+        "text": "Yeah, I know. I've been taking a little more because the pain is bad."
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "rep",
+        "text": "Okay. Are you requesting the same pharmacy on 5400 South?"
+      },
+      {
+        "timestamp": "00:01:54",
+        "speaker": "patient",
+        "text": "Yes. I really need it today. I can't sleep."
+      },
+      {
+        "timestamp": "00:02:02",
+        "speaker": "rep",
+        "text": "I'll send the refill request over as urgent."
+      },
+      {
+        "timestamp": "00:02:10",
+        "speaker": "patient",
+        "text": "Can you make sure they approve it? Last time they said it was too soon."
+      },
+      {
+        "timestamp": "00:02:19",
+        "speaker": "rep",
+        "text": "I can't guarantee approval, but I'll mark the request as patient out of medication and needs same-day refill."
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "patient",
+        "text": "Please do. I don't want to wait all weekend."
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "rep",
+        "text": "I understand. I've submitted it to the provider."
+      },
+      {
+        "timestamp": "00:02:45",
+        "speaker": "patient",
+        "text": "So the pharmacy will get it today?"
+      },
+      {
+        "timestamp": "00:02:51",
+        "speaker": "rep",
+        "text": "They should receive it once the provider signs off."
+      },
+      {
+        "timestamp": "00:02:59",
+        "speaker": "patient",
+        "text": "Okay. I appreciate it."
+      },
+      {
+        "timestamp": "00:03:04",
+        "speaker": "rep",
+        "text": "You're welcome. Is there anything else I can help you with?"
+      },
+      {
+        "timestamp": "00:03:10",
+        "speaker": "patient",
+        "text": "No, that's it."
+      },
+      {
+        "timestamp": "00:03:13",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a good day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0025",
+    "call_type": "prescription_refill",
+    "duration_seconds": 341,
+    "rep_id": "REP-0015",
+    "patient_satisfaction_score": 3.4,
+    "ground_truth_qa": {
+      "overall_score": 4.5,
+      "reviewer_notes": "Observed: The representative correctly avoided giving medical advice and directed the patient to discuss medication changes with the provider. However, the patient reported new fatigue and concerns that the medication might no longer be working, and the representative did not offer to schedule a follow-up visit or facilitate provider review.\nConcern: No proactive follow-up was offered despite new symptoms and questions about treatment effectiveness.\nImpact: The patient may delay appropriate clinical evaluation because the next step was left to the patient rather than being facilitated during the call.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 4,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Daniel. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I'd like to request a refill for my thyroid medication."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Angela Brooks, February 3, 1988."
+      },
+      {
+        "timestamp": "00:00:35",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:42",
+        "speaker": "patient",
+        "text": "801-555-1486."
+      },
+      {
+        "timestamp": "00:00:48",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your medication history."
+      },
+      {
+        "timestamp": "00:01:00",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see you're requesting Levothyroxine 75 mcg, and you still have refills available."
+      },
+      {
+        "timestamp": "00:01:25",
+        "speaker": "patient",
+        "text": "Great. I've been feeling more tired lately, though. Do you think I should increase the dose until I see my doctor?"
+      },
+      {
+        "timestamp": "00:01:38",
+        "speaker": "rep",
+        "text": "I'm not able to advise you about medication changes."
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "patient",
+        "text": "Do you think the medication has stopped working?"
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "rep",
+        "text": "That's something you'll need to discuss with your doctor."
+      },
+      {
+        "timestamp": "00:02:01",
+        "speaker": "patient",
+        "text": "Should I schedule an appointment?"
+      },
+      {
+        "timestamp": "00:02:07",
+        "speaker": "rep",
+        "text": "If you'd like to discuss your symptoms or medication, yes, your provider would be the right person to evaluate that."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "patient",
+        "text": "Okay. I just wasn't sure if it was urgent."
+      },
+      {
+        "timestamp": "00:02:26",
+        "speaker": "rep",
+        "text": "I'll submit the refill request to your usual pharmacy."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "rep",
+        "text": "You'll receive a notification once the provider approves the refill."
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "patient",
+        "text": "Thank you."
+      },
+      {
+        "timestamp": "00:02:51",
+        "speaker": "rep",
+        "text": "To summarize, your refill request has been submitted. For questions about your symptoms or whether your dose should change, you'll need to speak with your provider."
+      },
+      {
+        "timestamp": "00:03:05",
+        "speaker": "patient",
+        "text": "Okay. I'll make an appointment."
+      },
+      {
+        "timestamp": "00:03:10",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0026",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 361,
+    "rep_id": "REP-0048",
+    "patient_satisfaction_score": 1.4,
+    "ground_truth_qa": {
+      "overall_score": 2.9,
+      "reviewer_notes": "Observed: The caller identified themselves as an insurance representative, but no verification of the caller's identity or authorization was performed before diagnosis codes and other protected health information were disclosed.\nConcern: Potential unauthorized disclosure of protected health information due to missing caller verification.\nImpact: Releasing patient information without confirming the caller's authorization could create privacy and HIPAA compliance risks.",
+      "dimension_scores": {
+        "greeting_identity_verification": 2,
+        "empathy_tone": 5,
+        "accuracy_completeness": 2,
+        "protocol_adherence": 1,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Monica. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:09",
+        "speaker": "patient",
+        "text": "Hi, this is Kevin from Summit Health Insurance. I'm calling to verify diagnosis codes for one of our members before we process a claim."
+      },
+      {
+        "timestamp": "00:00:20",
+        "speaker": "rep",
+        "text": "I'd be happy to check that. May I have the patient's name?"
+      },
+      {
+        "timestamp": "00:00:28",
+        "speaker": "patient",
+        "text": "Jennifer Walters."
+      },
+      {
+        "timestamp": "00:00:34",
+        "speaker": "rep",
+        "text": "One moment while I locate the account."
+      },
+      {
+        "timestamp": "00:00:46",
+        "speaker": "patient",
+        "text": "Thank you."
+      },
+      {
+        "timestamp": "00:00:58",
+        "speaker": "rep",
+        "text": "I found the account. Which date of service are you calling about?"
+      },
+      {
+        "timestamp": "00:01:07",
+        "speaker": "patient",
+        "text": "June 18."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Okay, I have it."
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "patient",
+        "text": "Can you confirm the diagnosis code that was billed?"
+      },
+      {
+        "timestamp": "00:01:27",
+        "speaker": "rep",
+        "text": "Yes. I see diagnosis code E11.9 was submitted with the claim."
+      },
+      {
+        "timestamp": "00:01:37",
+        "speaker": "patient",
+        "text": "Was there a secondary diagnosis?"
+      },
+      {
+        "timestamp": "00:01:44",
+        "speaker": "rep",
+        "text": "Yes. I also see I10 for hypertension."
+      },
+      {
+        "timestamp": "00:01:54",
+        "speaker": "patient",
+        "text": "Perfect. That's exactly what I needed."
+      },
+      {
+        "timestamp": "00:02:01",
+        "speaker": "rep",
+        "text": "Anything else I can verify?"
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "patient",
+        "text": "Do you know if there were any lab services performed that day?"
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "rep",
+        "text": "Yes. A basic metabolic panel was billed with the office visit."
+      },
+      {
+        "timestamp": "00:02:29",
+        "speaker": "patient",
+        "text": "Great. Thanks for confirming."
+      },
+      {
+        "timestamp": "00:02:35",
+        "speaker": "rep",
+        "text": "You're welcome. Have a great day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0027",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 342,
+    "rep_id": "REP-0031",
+    "patient_satisfaction_score": 3.7,
+    "ground_truth_qa": {
+      "overall_score": 4.2,
+      "reviewer_notes": "Observed: The representative acknowledged the patient's limited English and spoke slowly, but after the patient asked for clarification, the appointment date and exact time were not fully repeated or confirmed to ensure understanding",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 4,
+        "protocol_adherence": 4,
+        "closing_next_steps": 3
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Sophia. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hello... my English not very good. I need doctor appointment."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "That's perfectly okay. I'll speak slowly. Before I access your account, may I have your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:31",
+        "speaker": "patient",
+        "text": "Ahmed Hassan. December 5, 1979."
+      },
+      {
+        "timestamp": "00:00:39",
+        "speaker": "rep",
+        "text": "Thank you. Can you verify your phone number?"
+      },
+      {
+        "timestamp": "00:00:46",
+        "speaker": "patient",
+        "text": "801-555-6712."
+      },
+      {
+        "timestamp": "00:00:53",
+        "speaker": "rep",
+        "text": "Perfect. What kind of appointment do you need?"
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "Follow-up. My blood pressure."
+      },
+      {
+        "timestamp": "00:01:08",
+        "speaker": "rep",
+        "text": "I can help with that. One moment while I check the schedule."
+      },
+      {
+        "timestamp": "00:01:20",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:33",
+        "speaker": "rep",
+        "text": "I have an opening on Tuesday, July 28, at 10:40 a.m. with Dr. Morgan, or Thursday, July 30, at 2:20 p.m."
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "patient",
+        "text": "Tuesday... yes."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "rep",
+        "text": "Okay, I'll reserve that appointment."
+      },
+      {
+        "timestamp": "00:02:03",
+        "speaker": "patient",
+        "text": "Tuesday morning?"
+      },
+      {
+        "timestamp": "00:02:08",
+        "speaker": "rep",
+        "text": "Yes, that's correct."
+      },
+      {
+        "timestamp": "00:02:14",
+        "speaker": "patient",
+        "text": "What time?"
+      },
+      {
+        "timestamp": "00:02:19",
+        "speaker": "rep",
+        "text": "It's in the morning."
+      },
+      {
+        "timestamp": "00:02:25",
+        "speaker": "patient",
+        "text": "Morning... okay."
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "rep",
+        "text": "Please arrive 15 minutes early with your insurance card and photo ID."
+      },
+      {
+        "timestamp": "00:02:42",
+        "speaker": "patient",
+        "text": "Yes, I bring."
+      },
+      {
+        "timestamp": "00:02:47",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:54",
+        "speaker": "patient",
+        "text": "No. Thank you."
+      },
+      {
+        "timestamp": "00:02:57",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0028",
+    "call_type": "clinical_triage",
+    "duration_seconds": 366,
+    "rep_id": "REP-0055",
+    "patient_satisfaction_score": 3.2,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: The representative appropriately recognized the urgent symptoms, initiated a warm transfer to the triage nurse, and instructed the patient to call 911 if breathing worsened. The call could have been strengthened by confirming whether someone was with the patient and reassuring the patient that the symptoms would be summarized for the receiving clinician.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Rachel. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I woke up with a high fever, chills, and I'm having trouble catching my breath."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'm sorry you're feeling so ill. Before I access your chart, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Nathan Cooper, October 12, 1986."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "801-555-1142."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Thank you. Give me just a moment while I open your chart."
+      },
+      {
+        "timestamp": "00:01:02",
+        "speaker": "patient",
+        "text": "Okay... I'm just feeling pretty scared."
+      },
+      {
+        "timestamp": "00:01:13",
+        "speaker": "rep",
+        "text": "Can you tell me when your symptoms started?"
+      },
+      {
+        "timestamp": "00:01:21",
+        "speaker": "patient",
+        "text": "Last night. The breathing is definitely worse today."
+      },
+      {
+        "timestamp": "00:01:31",
+        "speaker": "rep",
+        "text": "Thank you for letting me know. Because you're having difficulty breathing, I need to connect you with our triage nurse immediately."
+      },
+      {
+        "timestamp": "00:01:45",
+        "speaker": "patient",
+        "text": "Okay."
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "rep",
+        "text": "Please stay on the line while I complete a warm transfer. If your breathing becomes significantly worse before you're connected, call 911 immediately."
+      },
+      {
+        "timestamp": "00:02:05",
+        "speaker": "patient",
+        "text": "Alright."
+      },
+      {
+        "timestamp": "00:02:10",
+        "speaker": "rep",
+        "text": "I'm transferring you now."
+      },
+      {
+        "timestamp": "00:02:16",
+        "speaker": "patient",
+        "text": "Thank you."
+      },
+      {
+        "timestamp": "00:02:21",
+        "speaker": "rep",
+        "text": "You're welcome. Please hold while I bring the triage nurse onto the line."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0029",
+    "call_type": "prescription_refill",
+    "duration_seconds": 364,
+    "rep_id": "REP-0015",
+    "patient_satisfaction_score": 5.0,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Complete refill workflow followed. Identity verified, pharmacy confirmed, refill process explained, and clear next steps provided.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Daniel. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:09",
+        "speaker": "patient",
+        "text": "Hello. I'd like to request a refill for my blood thinner. I'm almost out."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Eleanor Bishop, January 6, 1941."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you, Ms. Bishop. Can you also verify your phone number?"
+      },
+      {
+        "timestamp": "00:00:45",
+        "speaker": "patient",
+        "text": "801-555-9088."
+      },
+      {
+        "timestamp": "00:00:52",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your medication history."
+      },
+      {
+        "timestamp": "00:01:05",
+        "speaker": "patient",
+        "text": "Take your time."
+      },
+      {
+        "timestamp": "00:01:18",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see you're requesting a refill for Apixaban 5 mg."
+      },
+      {
+        "timestamp": "00:01:29",
+        "speaker": "patient",
+        "text": "Yes, that's correct."
+      },
+      {
+        "timestamp": "00:01:34",
+        "speaker": "rep",
+        "text": "I also see your prescription still has refills remaining, so I'll send the refill request to your provider today."
+      },
+      {
+        "timestamp": "00:01:47",
+        "speaker": "patient",
+        "text": "Wonderful. I was worried I'd have to start all over."
+      },
+      {
+        "timestamp": "00:01:55",
+        "speaker": "rep",
+        "text": "No, ma'am. This should be a routine refill request."
+      },
+      {
+        "timestamp": "00:02:02",
+        "speaker": "patient",
+        "text": "Will it go to Valley Community Pharmacy?"
+      },
+      {
+        "timestamp": "00:02:09",
+        "speaker": "rep",
+        "text": "Yes. I have Valley Community Pharmacy on file. Would you like to keep that as your preferred pharmacy?"
+      },
+      {
+        "timestamp": "00:02:20",
+        "speaker": "patient",
+        "text": "Yes, please."
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "rep",
+        "text": "Perfect. I'll keep that pharmacy on the request."
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "patient",
+        "text": "How long should I expect it to take?"
+      },
+      {
+        "timestamp": "00:02:38",
+        "speaker": "rep",
+        "text": "Most refill requests are reviewed within 1 business day. You'll receive a text message when your provider approves it, and your pharmacy will notify you when it's ready for pickup."
+      },
+      {
+        "timestamp": "00:02:56",
+        "speaker": "patient",
+        "text": "That's very helpful."
+      },
+      {
+        "timestamp": "00:03:00",
+        "speaker": "rep",
+        "text": "Since this medication is important to take consistently, please let us know if you're getting close to running out before the refill is approved."
+      },
+      {
+        "timestamp": "00:03:13",
+        "speaker": "patient",
+        "text": "I will. Thank you for mentioning that."
+      },
+      {
+        "timestamp": "00:03:19",
+        "speaker": "rep",
+        "text": "To summarize, your refill request for Apixaban 5 mg has been submitted, it will be sent to Valley Community Pharmacy after provider approval, and you should receive notifications from both HealthBridge and the pharmacy."
+      },
+      {
+        "timestamp": "00:03:38",
+        "speaker": "patient",
+        "text": "Excellent. You've made this very easy."
+      },
+      {
+        "timestamp": "00:03:44",
+        "speaker": "rep",
+        "text": "You're very welcome, Ms. Bishop. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:03:51",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:03:55",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0030",
+    "call_type": "appointment_scheduling",
+    "duration_seconds": 298,
+    "rep_id": "REP-0042",
+    "patient_satisfaction_score": 4.9,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Verified identity, rescheduled the appointment, confirmed the previous appointment was canceled, reviewed the new appointment details, and provided clear next steps.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Maya. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I need to reschedule my appointment for next week because I'll be out of town."
+      },
+      {
+        "timestamp": "00:00:18",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:29",
+        "speaker": "patient",
+        "text": "Olivia Bennett, May 22, 1992."
+      },
+      {
+        "timestamp": "00:00:37",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify your phone number?"
+      },
+      {
+        "timestamp": "00:00:44",
+        "speaker": "patient",
+        "text": "801-555-6821."
+      },
+      {
+        "timestamp": "00:00:50",
+        "speaker": "rep",
+        "text": "Perfect. I see you're currently scheduled for July 23 at 3:00 p.m. with Dr. Lawson."
+      },
+      {
+        "timestamp": "00:01:01",
+        "speaker": "patient",
+        "text": "That's the one."
+      },
+      {
+        "timestamp": "00:01:06",
+        "speaker": "rep",
+        "text": "I have openings on July 28 at 9:20 a.m. or July 29 at 1:40 p.m. Which works better for you?"
+      },
+      {
+        "timestamp": "00:01:19",
+        "speaker": "patient",
+        "text": "July 28 at 9:20 a.m., please."
+      },
+      {
+        "timestamp": "00:01:27",
+        "speaker": "rep",
+        "text": "Absolutely. I've moved your appointment to Monday, July 28, at 9:20 a.m. with Dr. Lawson."
+      },
+      {
+        "timestamp": "00:01:39",
+        "speaker": "patient",
+        "text": "Perfect."
+      },
+      {
+        "timestamp": "00:01:43",
+        "speaker": "rep",
+        "text": "Please arrive 15 minutes early with your photo ID and insurance card."
+      },
+      {
+        "timestamp": "00:01:52",
+        "speaker": "patient",
+        "text": "Will do."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "rep",
+        "text": "To confirm, your previous appointment has been canceled, and you're now scheduled for Monday, July 28, at 9:20 a.m. with Dr. Lawson."
+      },
+      {
+        "timestamp": "00:02:12",
+        "speaker": "patient",
+        "text": "That's exactly what I needed. Thank you."
+      },
+      {
+        "timestamp": "00:02:18",
+        "speaker": "rep",
+        "text": "You're very welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:24",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:27",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0031",
+    "call_type": "billing_inquiry",
+    "duration_seconds": 287,
+    "rep_id": "REP-0078",
+    "patient_satisfaction_score": 4.8,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Correct billing inquiry workflow followed. Identity verified, copay explained, appointment confirmed, and clear next steps provided.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. This is Erin. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I have a quick question about my copay for an appointment next week."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Jason Miller, September 14, 1987."
+      },
+      {
+        "timestamp": "00:00:35",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:42",
+        "speaker": "patient",
+        "text": "801-555-4829."
+      },
+      {
+        "timestamp": "00:00:48",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your insurance benefits."
+      },
+      {
+        "timestamp": "00:01:00",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "Thank you for waiting. Your current eligibility response shows a $30 copay for a primary care office visit."
+      },
+      {
+        "timestamp": "00:01:24",
+        "speaker": "patient",
+        "text": "Is that all I'll have to pay?"
+      },
+      {
+        "timestamp": "00:01:30",
+        "speaker": "rep",
+        "text": "The $30 copay is the amount due at check-in for a routine office visit. If your provider orders additional services, such as laboratory tests or procedures, your insurance may process those separately."
+      },
+      {
+        "timestamp": "00:01:49",
+        "speaker": "patient",
+        "text": "That makes sense."
+      },
+      {
+        "timestamp": "00:01:53",
+        "speaker": "rep",
+        "text": "I also see your appointment is scheduled for July 24 at 8:40 a.m. with Dr. Morgan."
+      },
+      {
+        "timestamp": "00:02:04",
+        "speaker": "patient",
+        "text": "Perfect. I just wanted to make sure I brought enough with me."
+      },
+      {
+        "timestamp": "00:02:13",
+        "speaker": "rep",
+        "text": "Absolutely. Please remember to bring your insurance card and photo ID as well."
+      },
+      {
+        "timestamp": "00:02:22",
+        "speaker": "patient",
+        "text": "Will do."
+      },
+      {
+        "timestamp": "00:02:26",
+        "speaker": "rep",
+        "text": "To summarize, your estimated copay is $30, your appointment remains scheduled for July 24 at 8:40 a.m., and any additional services may result in separate patient responsibility after your insurance processes the claim."
+      },
+      {
+        "timestamp": "00:02:46",
+        "speaker": "patient",
+        "text": "Excellent. Thank you for explaining everything."
+      },
+      {
+        "timestamp": "00:02:52",
+        "speaker": "rep",
+        "text": "You're very welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:58",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:03:01",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge Billing. Have a wonderful day."
+      }
+    ]
+  },
+  {
+    "call_id": "HB-GPT-0032",
+    "call_type": "insurance_verification",
+    "duration_seconds": 316,
+    "rep_id": "REP-0056",
+    "patient_satisfaction_score": 4.0,
+    "ground_truth_qa": {
+      "overall_score": 5.0,
+      "reviewer_notes": "Observed: Correct insurance verification workflow completed. Identity verified, benefits explained, appointment confirmed, and next steps reviewed.",
+      "dimension_scores": {
+        "greeting_identity_verification": 5,
+        "empathy_tone": 5,
+        "accuracy_completeness": 5,
+        "protocol_adherence": 5,
+        "closing_next_steps": 5
+      }
+    },
+    "transcript": [
+      {
+        "timestamp": "00:00:02",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. This is Natalie. How may I help you today?"
+      },
+      {
+        "timestamp": "00:00:08",
+        "speaker": "patient",
+        "text": "Hi. I'd like to verify my insurance before my appointment next week."
+      },
+      {
+        "timestamp": "00:00:16",
+        "speaker": "rep",
+        "text": "I'd be happy to help. Before I access your account, may I verify your full name and date of birth?"
+      },
+      {
+        "timestamp": "00:00:27",
+        "speaker": "patient",
+        "text": "Christopher Young, April 16, 1990."
+      },
+      {
+        "timestamp": "00:00:35",
+        "speaker": "rep",
+        "text": "Thank you. Can you also verify the phone number on your account?"
+      },
+      {
+        "timestamp": "00:00:42",
+        "speaker": "patient",
+        "text": "801-555-7326."
+      },
+      {
+        "timestamp": "00:00:48",
+        "speaker": "rep",
+        "text": "Perfect. Please give me a moment while I review your insurance information."
+      },
+      {
+        "timestamp": "00:01:00",
+        "speaker": "patient",
+        "text": "Sure."
+      },
+      {
+        "timestamp": "00:01:12",
+        "speaker": "rep",
+        "text": "Thank you for waiting. I see your Peak Health PPO plan is active through December 31."
+      },
+      {
+        "timestamp": "00:01:23",
+        "speaker": "patient",
+        "text": "Great. Is my annual physical covered?"
+      },
+      {
+        "timestamp": "00:01:30",
+        "speaker": "rep",
+        "text": "Yes. Based on the eligibility response, preventive annual wellness visits are covered with no copay. Additional services performed during the visit may be processed under your medical benefits."
+      },
+      {
+        "timestamp": "00:01:48",
+        "speaker": "patient",
+        "text": "Okay. That's exactly what I needed to know."
+      },
+      {
+        "timestamp": "00:01:56",
+        "speaker": "rep",
+        "text": "Your appointment is currently scheduled for July 29 at 10:30 a.m. with Dr. Chen."
+      },
+      {
+        "timestamp": "00:02:07",
+        "speaker": "patient",
+        "text": "Perfect."
+      },
+      {
+        "timestamp": "00:02:11",
+        "speaker": "rep",
+        "text": "Please remember to bring your current insurance card and a photo ID to your appointment."
+      },
+      {
+        "timestamp": "00:02:21",
+        "speaker": "patient",
+        "text": "I will."
+      },
+      {
+        "timestamp": "00:02:25",
+        "speaker": "rep",
+        "text": "Is there anything else I can help you with today?"
+      },
+      {
+        "timestamp": "00:02:31",
+        "speaker": "patient",
+        "text": "No, that's everything."
+      },
+      {
+        "timestamp": "00:02:34",
+        "speaker": "rep",
+        "text": "Thank you for calling HealthBridge. Have a wonderful day."
+      }
+    ]
+  }
+]

@@ -9,8 +9,15 @@ from __future__ import annotations
 
 from .qa_engine import Evaluation
 
-_LOW_SCORE_THRESHOLD = 3.0
-_DIM_FAIL_MAX = 2
+# Lowered from 3.0 — the old threshold flagged plenty of merely-mediocre calls,
+# not just risky ones. See docs/eval_findings.md for the routing-noise rationale.
+_LOW_SCORE_THRESHOLD = 2.5
+# Generic "any dimension" catch-all — tightened from 2 to 1. A single dimension
+# at 2 is common and often unremarkable; type-specific and identity risk below
+# now cover the "2" case with more targeted conditions instead.
+_DIM_FAIL_MAX = 1
+# Threshold for identity privacy risk and the type-specific safety risks below.
+_RISK_DIM_MAX = 2
 _IDENTITY_DIM = "greeting_identity_verification"
 
 
@@ -25,13 +32,22 @@ def needs_review(evaluation: Evaluation) -> list[str]:
     if any(v <= _DIM_FAIL_MAX for v in dim_scores.values()):
         reasons.append("dimension_fail")
 
-    if evaluation.call_type == "clinical_triage":
+    if dim_scores.get(_IDENTITY_DIM, 99) <= _RISK_DIM_MAX:
+        reasons.append("privacy_identity_risk")
+
+    # Type-specific safety risk — no longer an unconditional call_type trigger.
+    # A clean clinical_triage or prescription_refill call no longer routes by
+    # type alone; it routes when the type-relevant dimension shows real risk.
+    if evaluation.call_type == "clinical_triage" and (
+        dim_scores.get("protocol_adherence", 99) <= _RISK_DIM_MAX
+        or dim_scores.get("accuracy_completeness", 99) <= _RISK_DIM_MAX
+    ):
         reasons.append("safety_triage")
 
-    if evaluation.call_type == "prescription_refill":
+    if (
+        evaluation.call_type == "prescription_refill"
+        and dim_scores.get("protocol_adherence", 99) <= _RISK_DIM_MAX
+    ):
         reasons.append("safety_prescription")
-
-    if dim_scores.get(_IDENTITY_DIM, 99) <= _DIM_FAIL_MAX:
-        reasons.append("privacy_identity_risk")
 
     return reasons

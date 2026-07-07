@@ -28,6 +28,11 @@ DB_PATH = os.environ.get("QA_DB_PATH", os.path.join(os.path.dirname(__file__), "
 
 SEED_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "seed_transcripts.json")
 GENERATED_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "generated_transcripts.json")
+GPT_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "gpt_transcripts.json")
+HOLDOUT_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "holdout_ids.json")
+SEED_LABELS_BACKUP_PATH = os.path.join(
+    os.path.dirname(__file__), "..", "data", "seed_labels_v0_backup.json"
+)
 
 
 def model() -> str:

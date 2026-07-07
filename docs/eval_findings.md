@@ -158,3 +158,25 @@ Smaller fixes found and closed out alongside the investigation above:
 - **Review-queue dedupe was broken.** `storage.save_review` deduped on `(call_id, run_id)`, but `run_id` is unique per judge run, so the check never matched across repeated evaluations of the same call — a call re-evaluated N times produced N pending review rows. Fixed to dedupe on `(call_id, status='Pending')`, updating the existing row's `run_id` instead of inserting a duplicate.
 - **`REGRESSION_SET` referenced 2 nonexistent transcripts** (`HB-SYNTH-00101`, `HB-SYNTH-00103`) that `ingest.run_suite` was silently skipping on every run. Removed from the set and added a test (`test_default_sets_reference_existing_transcripts`) asserting every id in `SMOKE_SET`/`REGRESSION_SET` resolves to a real transcript, so set/data drift fails CI instead of silently skipping.
 - **The API accepted a placeholder `call_id`.** `POST /evaluate-call` would store a real evaluation row for `call_id="string"` — Swagger UI's auto-filled example for an unfilled field. Added `min_length=5` plus a validator rejecting the literal `"string"`.
+
+---
+
+## 10. Review Queue Routing Overhaul (reduce noise, keep safety)
+
+The Review Queue had accumulated 53 pending entries, and 52 of them traced back to Smoke/Regression/Full suite runs — calibration experiments on the judge, not production traffic. Two changes close this: suite runs stop routing at all, and the remaining call-type triggers got sharper.
+
+**1. Suite runs no longer route to review.** `storage.save()` gained a `route_to_review` flag (default `True`); `ingest.run_suite()` is the one caller that passes `False`. Single-call evaluation from the dashboard and the FastAPI endpoint are unaffected — they still route exactly as before.
+
+**2. Old triggers vs new:**
+
+| Trigger | Old | New |
+|---|---|---|
+| Overall score | `< 3.0` | `< 2.5` |
+| Any dimension | `<= 2` (`dimension_fail`) | `<= 1` (`dimension_fail`) |
+| Identity verification | `<= 2` (`privacy_identity_risk`) | unchanged |
+| `clinical_triage` | any call of this type (`safety_triage`) | `protocol_adherence <= 2` OR `accuracy_completeness <= 2` |
+| `prescription_refill` | any call of this type (`safety_prescription`) | `protocol_adherence <= 2` |
+
+**Rationale:** call type was a *proxy* for risk, not risk itself — a clean, well-handled triage or refill call routed every single time purely because of its type, regardless of how well the rep actually handled it. That's noise pretending to be safety. The new triggers route on the score that actually indicates risk for that call type (protocol adherence for both; accuracy for triage, since a missed clinical detail is exactly the failure mode that matters there). The generic any-dimension catch-all moved from `<= 2` to `<= 1` because it's no longer the only safety net — identity and the two type-specific rules now cover the `<= 2` cases that matter, so the catch-all only needs to catch genuinely bad (`1`) scores on dimensions with no dedicated rule.
+
+**Cleanup:** `scripts/resolve_suite_run_reviews.py` bulk-resolves the pre-existing backlog — any still-`Pending` review whose `run_id` traces back to a suite-run evaluation is marked `status='Resolved'`, `note='bulk-resolved: calibration run artifact'`. Reviews a human already triaged are left untouched regardless of origin.

@@ -97,7 +97,22 @@ def all_suite_runs() -> list[dict]:
 
 
 def all_reviews() -> list[dict]:
-    # The demo export carries no human_reviews data — the Review Queue page
-    # renders its "no reviews yet" empty state in DEMO_MODE, which also means
-    # none of its status-editing controls (real DB writes) ever render.
-    return []
+    return sorted(_load().get("human_reviews", []), key=lambda r: r["review_id"], reverse=True)
+
+
+def labeling_stats() -> dict:
+    """n human-labeled calls (seed + GPT) and the held-out split size, for
+    display in the demo banner. {} if the export predates this field."""
+    return _load().get("labeling_stats", {})
+
+
+def gpt_calls() -> list[dict]:
+    """Frozen snapshot of data/gpt_transcripts.json, for the Labeling page's
+    read-only DEMO_MODE showcase. [] if the export predates this field."""
+    return _load().get("gpt_calls", [])
+
+
+def seed_calls() -> list[dict]:
+    """Frozen snapshot of data/seed_transcripts.json, for the Labeling page's
+    read-only DEMO_MODE showcase. [] if the export predates this field."""
+    return _load().get("seed_calls", [])

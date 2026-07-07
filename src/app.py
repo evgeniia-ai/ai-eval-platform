@@ -7,6 +7,7 @@ Pages:
   - Call detail     : drill into one evaluation (dimensions, evidence, transcript, vs ground truth)
   - Rep summary     : per-rep averages, score trend, recurring weaknesses, coaching generation
   - Data generation : create synthetic transcripts to augment the seed set
+  - Labeling        : human ground truth for GPT-generated + seed calls (read-only in DEMO_MODE)
 """
 
 import json
@@ -23,11 +24,11 @@ import plotly.express as px
 import streamlit as st
 import traceback  # to print the full error stack to the UI instead of swallowing it
 
-from src import coaching, config, data_gen, demo_data, ingest, storage
+from src import coaching, config, data_gen, demo_data, ingest, labeling, storage
 from src.data_gen import is_synthetic_call_id
 from src.qa_engine import QAError, evaluate
 from src.models import Transcript
-from src.rubric import RUBRIC, DIMENSION_KEYS
+from src.rubric import RUBRIC, DIMENSION_KEYS, RUBRIC_VERSION, weighted_overall
 from src.test_sets import SMOKE_SET, REGRESSION_SET
 
 
@@ -75,9 +76,12 @@ _JUDGE_MODELS = [
 st.set_page_config(page_title="HealthBridge Call QA", page_icon="📞", layout="wide")
 
 if DEMO_MODE:
+    _stats = demo_data.labeling_stats()
+    _n_labeled = _stats.get("n_labeled", "?")
     st.info(
-        "🔒 **Demo mode** — frozen results from a real evaluation run (2 suites x 3 "
-        "judge models). Live evaluation available when running locally with your own API key."
+        f"🔒 **Demo mode** — frozen results from real evaluation runs: {_n_labeled} "
+        "human-labeled calls, 3 judge models, honest human-only MAE. Live evaluation "
+        "available when running locally with your own API key."
     )
 else:
     storage.init()
@@ -116,11 +120,9 @@ def _score_color(v: float) -> str:
 st.sidebar.title("📞 HealthBridge")
 st.sidebar.caption("Call QA & Self-Improvement")
 st.sidebar.metric("Evaluations stored", db.count())
-page = st.sidebar.radio(
-    "Navigate",
-    ["Overview", "Call detail", "Rep summary", "Data generation", "Test runs", "Review Queue"],
-)
-if page not in ("Test runs", "Review Queue"):
+_page_names = ["Overview", "Call detail", "Rep summary", "Data generation", "Test runs", "Review Queue", "Labeling"]
+page = st.sidebar.radio("Navigate", _page_names)
+if page not in ("Test runs", "Review Queue", "Labeling"):
     _chosen_model_label = st.sidebar.selectbox(
         "Judge model",
         [label for label, _ in _JUDGE_MODELS],
@@ -574,11 +576,13 @@ def page_test_runs():
 
         smoke_rows = [r for r in suite_rows if r["suite_name"] == "Smoke"]
         reg_rows   = [r for r in suite_rows if r["suite_name"] == "Regression"]
+        full_rows  = [r for r in suite_rows if r["suite_name"] == "Full"]
 
-        tab_smoke, tab_reg = st.tabs(["Smoke", "Regression"])
+        tab_smoke, tab_reg, tab_full = st.tabs(["Smoke", "Regression", "Full"])
         for tab, rows, label in [
             (tab_smoke, smoke_rows, "Smoke"),
             (tab_reg,   reg_rows,   "Regression"),
+            (tab_full,  full_rows,  "Full"),
         ]:
             with tab:
                 if not rows:
@@ -603,8 +607,8 @@ def page_test_runs():
         chart_rows = [r for r in suite_rows if r["mae_vs_gt"] is not None]
         if chart_rows:
             st.subheader("MAE vs ground truth by judge model")
-            col_s, col_r = st.columns(2)
-            for col, suite_label in [(col_s, "Smoke"), (col_r, "Regression")]:
+            col_s, col_r, col_f = st.columns(3)
+            for col, suite_label in [(col_s, "Smoke"), (col_r, "Regression"), (col_f, "Full")]:
                 sub = [r for r in chart_rows if r["suite_name"] == suite_label]
                 with col:
                     st.markdown(f"**{suite_label}**")
@@ -676,7 +680,7 @@ def page_review_queue():
         st.success("Nothing pending — all reviews resolved.")
     else:
         for row in pending:
-            ev = storage.get_evaluation(row["call_id"], run_id=row["run_id"])
+            ev = db.get_evaluation(row["call_id"], run_id=row["run_id"])
             score = ev["overall_score"] if ev else None
             call_type = ev["call_type"] if ev else "unknown"
             score_label = f"overall {score} {_score_color(score)}" if score is not None else "score unknown"
@@ -739,7 +743,9 @@ def page_review_queue():
                     key=f"rq_note_{row['review_id']}",
                     placeholder="Explain the decision or add context",
                 )
-                if st.button("Save", key=f"rq_save_{row['review_id']}"):
+                if DEMO_MODE:
+                    st.caption("Resolving reviews is disabled in demo mode (read-only).")
+                elif st.button("Save", key=f"rq_save_{row['review_id']}"):
                     storage.update_review_status(row["review_id"], new_status, note or None)
                     st.success(f"Marked as **{new_status}**.")
                     st.rerun()
@@ -777,7 +783,7 @@ def page_review_queue():
         if edit_choice != "— none —":
             chosen_idx = edit_options.index(edit_choice) - 1  # offset for "— none —"
             row = resolved[chosen_idx]
-            ev = storage.get_evaluation(row["call_id"], run_id=row["run_id"])
+            ev = db.get_evaluation(row["call_id"], run_id=row["run_id"])
             call_type = ev["call_type"] if ev else "unknown"
 
             st.divider()
@@ -838,10 +844,213 @@ def page_review_queue():
                 key="rq_res_edit_note",
                 placeholder="Explain the decision or add context",
             )
-            if st.button("Save", key="rq_res_edit_save"):
+            if DEMO_MODE:
+                st.caption("Editing resolved reviews is disabled in demo mode (read-only).")
+            elif st.button("Save", key="rq_res_edit_save"):
                 storage.update_review_status(row["review_id"], new_status, note or None)
                 st.success(f"Saved as **{new_status}**.")
                 st.rerun()
+
+
+# ---------------------------------------------------------------------------
+# Labeling (human ground truth for GPT-generated + seed calls). Read-only
+# showcase in DEMO_MODE: reads the frozen export (never the live files) and
+# disables every editing control — this is where the demo's ground truth
+# came from, not something a visitor can change.
+# ---------------------------------------------------------------------------
+def _prefill_label_form(call: dict) -> None:
+    """First time this call's widget keys are touched this session, pre-fill them
+    from its existing ground_truth_qa. Unlabeled calls are left untouched — their
+    widgets fall back to Streamlit's own blank defaults. Never clobbers a value
+    already in session_state (e.g. an in-progress edit)."""
+    gt = call.get("ground_truth_qa")
+    if gt is None:
+        return
+    cid = call["call_id"]
+    dim_scores = gt["dimension_scores"]
+    for d in RUBRIC:
+        key = f"label_score_{cid}_{d.key}"
+        if key not in st.session_state:
+            st.session_state[key] = dim_scores.get(d.key)
+
+    observed_key = f"label_observed_{cid}"
+    if observed_key not in st.session_state:
+        observed, concern, impact = labeling.parse_reviewer_notes(gt["reviewer_notes"])
+        st.session_state[observed_key] = observed
+        st.session_state[f"label_concern_{cid}"] = concern
+        st.session_state[f"label_impact_{cid}"] = impact
+
+
+def _seed_demo_default_selection() -> None:
+    """First load only: default to a fully-labeled call whose reviewer_notes
+    show the Observed/Concern/Impact format, so a demo visitor immediately
+    sees the structured evidence instead of an arbitrary first call."""
+    rich_gpt_id = labeling.find_call_with_rich_notes(demo_data.gpt_calls())
+    if rich_gpt_id is not None:
+        st.session_state["label_source"] = "GPT calls"
+        st.session_state["label_call_selectbox"] = rich_gpt_id
+        return
+    rich_seed_id = labeling.find_call_with_rich_notes(demo_data.seed_calls())
+    if rich_seed_id is not None:
+        st.session_state["label_source"] = "Seed calls"
+        st.session_state["label_call_selectbox"] = rich_seed_id
+
+
+def page_labeling():
+    st.header("Labeling")
+
+    if DEMO_MODE and "label_source" not in st.session_state:
+        _seed_demo_default_selection()
+
+    source = st.radio("Data source", ["GPT calls", "Seed calls"], horizontal=True, key="label_source")
+    is_seed = source == "Seed calls"
+    source_path = config.SEED_PATH if is_seed else config.GPT_PATH
+
+    if DEMO_MODE:
+        calls = demo_data.seed_calls() if is_seed else demo_data.gpt_calls()
+    else:
+        calls = labeling.load_calls(source_path)
+    if not calls:
+        if is_seed:
+            st.info(f"No calls found in `{source_path}`.")
+        else:
+            st.info(
+                f"No calls found in `{source_path}` yet — run "
+                "`python scripts/import_gpt_transcripts.py` first."
+            )
+        return
+
+    n_labeled, n_total = labeling.labeled_count(calls)
+    if n_labeled == n_total:
+        st.success(f"All calls labeled 🎉 ({n_labeled} of {n_total})")
+    else:
+        st.caption(f"Labeled {n_labeled} of {n_total}")
+
+    call_ids = [c["call_id"] for c in calls]
+    first_unlabeled = next((cid for cid, c in zip(call_ids, calls) if not labeling.is_labeled(c)), call_ids[0])
+    by_id = {c["call_id"]: c for c in calls}
+
+    # Drive this widget purely via its own session_state key (no `index=`), since
+    # Streamlit only honors `index` on a key's very first render — on later
+    # reruns the widget's own persisted value wins regardless of `index`.
+    # Auto-advance (below) can't reassign this key directly either, since a
+    # widget's key can't be mutated after that widget has already run in the
+    # same script pass — so it stashes the target in "label_pending_call_id"
+    # instead, which is applied here, before the widget is (re-)created.
+    pending = st.session_state.pop("label_pending_call_id", None)
+    if pending is not None:
+        st.session_state["label_call_selectbox"] = pending
+    if st.session_state.get("label_call_selectbox") not in call_ids:
+        st.session_state["label_call_selectbox"] = first_unlabeled
+
+    selected_id = st.selectbox(
+        "Jump to call",
+        call_ids,
+        format_func=lambda cid: f"{'✅' if labeling.is_labeled(by_id[cid]) else '⬜'} {cid}",
+        key="label_call_selectbox",
+    )
+    call = by_id[selected_id]
+    already_labeled = labeling.is_labeled(call)
+    _prefill_label_form(call)
+
+    col_left, col_right = st.columns([3, 2])
+
+    with col_left:
+        st.subheader(call["call_id"])
+        c1, c2 = st.columns(2)
+        c1.metric("Call type", call["call_type"])
+        c2.metric("Duration", f"{call['duration_seconds']}s")
+        if already_labeled:
+            gt = call["ground_truth_qa"]
+            st.caption(f"Currently stored overall: **{gt['overall_score']}** — saving will replace this label.")
+        st.divider()
+        for u in call["transcript"]:
+            if u["speaker"] == "rep":
+                st.markdown(f"`{u['timestamp']}` 🧑‍⚕️ **Rep:** {u['text']}")
+            else:
+                st.markdown(f"`{u['timestamp']}` &nbsp;&nbsp;&nbsp;🧑 **Patient:** {u['text']}")
+
+    with col_right:
+        st.subheader(f"Rubric v{RUBRIC_VERSION} reference")
+        for d in RUBRIC:
+            st.markdown(f"**{d.name}** ({int(d.weight * 100)}%)")
+            st.caption(d.description)
+
+        st.divider()
+        st.subheader("Score this call")
+
+        scores: dict[str, int | None] = {}
+        for d in RUBRIC:
+            key = f"label_score_{selected_id}_{d.key}"
+            # Omit `index` once the key is pre-seeded — passing both a default
+            # and a pre-set session_state value for the same key raises in Streamlit.
+            if key in st.session_state:
+                scores[d.key] = st.selectbox(d.name, [1, 2, 3, 4, 5], placeholder="Select 1–5", key=key, disabled=DEMO_MODE)
+            else:
+                scores[d.key] = st.selectbox(d.name, [1, 2, 3, 4, 5], index=None, placeholder="Select 1–5", key=key, disabled=DEMO_MODE)
+
+        observed = st.text_area(
+            f"Observed (required, min {labeling.MIN_OBSERVED_LEN} characters)",
+            key=f"label_observed_{selected_id}",
+            placeholder="Facts from the transcript, ideally with timestamps — what was actually said or done.",
+            disabled=DEMO_MODE,
+        )
+        concern = st.text_area(
+            "Concern (optional)",
+            key=f"label_concern_{selected_id}",
+            placeholder="None",
+            disabled=DEMO_MODE,
+        )
+        impact = st.text_area(
+            "Impact (optional)",
+            key=f"label_impact_{selected_id}",
+            placeholder="Why the concern matters for the patient or clinic, if any.",
+            disabled=DEMO_MODE,
+        )
+
+        if all(v is not None for v in scores.values()):
+            st.metric("Weighted overall (preview)", round(weighted_overall(scores), 1))
+        else:
+            st.metric("Weighted overall (preview)", "—")
+
+        if DEMO_MODE:
+            stats = demo_data.labeling_stats()
+            n_labeled = stats.get("n_labeled", "?")
+            st.caption(
+                f"Labeling is disabled in demo mode — this page is where human "
+                f"ground truth is created ({n_labeled} calls labeled)."
+            )
+        else:
+            error = labeling.validate_label(scores, observed or "")
+            if error:
+                st.caption(f"⚠️ {error}")
+
+            button_label = "🔄 Update label" if already_labeled else "💾 Save label"
+            if st.button(button_label, type="primary", disabled=bool(error)):
+                try:
+                    if is_seed:
+                        labeling.save_seed_label(selected_id, scores, observed, concern or "", impact or "")
+                    else:
+                        labeling.save_label(selected_id, scores, observed, concern or "", impact or "")
+                    st.toast(f"Saved {selected_id} ✅", icon="✅")
+
+                    updated_calls = labeling.load_calls(source_path)
+                    updated_by_id = {c["call_id"]: c for c in updated_calls}
+                    next_id = labeling.next_unlabeled_call_id(call_ids, updated_by_id, selected_id)
+                    if next_id is None:
+                        # No unlabeled call remains anywhere (always true on the seed
+                        # source) — fall back to plain sequential order so re-labeling
+                        # can still advance, without wrapping past the last call.
+                        next_id = labeling.next_call_id_in_order(call_ids, selected_id)
+
+                    if next_id is not None:
+                        st.session_state["label_pending_call_id"] = next_id
+                    else:
+                        n_lab, n_tot = labeling.labeled_count(updated_calls)
+                        st.toast(f"All calls in this source processed ({n_lab} of {n_tot}).", icon="🎉")
+                    st.rerun()
+                except ValueError as e:
+                    st.error(str(e))
 
 
 PAGES = {
@@ -851,5 +1060,6 @@ PAGES = {
     "Data generation": page_data_gen,
     "Test runs": page_test_runs,
     "Review Queue": page_review_queue,
+    "Labeling": page_labeling,
 }
 PAGES[page]()

@@ -80,7 +80,9 @@ def run_suite(
                 continue
             try:
                 ev = evaluate(t)
-                storage.save(ev, transcript=t)
+                # Calibration/suite runs are experiments on the judge, not
+                # production traffic — never route them to human review.
+                storage.save(ev, transcript=t, route_to_review=False)
                 ok_scores.append(ev.overall_score)
                 gt_overall = t.ground_truth_qa.overall_score if t.ground_truth_qa else None
                 raw_results.append((cid, ev.overall_score, gt_overall))
