@@ -184,7 +184,7 @@ The suite is split into two tiers:
 
 ## Architecture
 
-![Architecture](docs/img/architecture.png)
+![Architecture](docs/img/architecture.svg)
 
 ---
 
